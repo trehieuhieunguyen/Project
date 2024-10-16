@@ -1,0 +1,186 @@
+﻿@model Project.Models.ViewModels.AuctionVM
+@{
+    ViewData["Title"] = "Create";
+}
+<link type="text/css" rel="stylesheet" href="~/css/image-uploader.min.css">
+<link rel="stylesheet" href="~/cssfull/contact.css" />
+<style>
+    .container1 {
+        height: 200px;
+    }
+    .input-images-1 {
+        background-color: #ffffff;
+    }
+</style>
+
+<div class="container">
+
+    <div class="form-area box">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-12">
+                    <h3 style="text-align: center;">Liên hệ bán đấu giá</h3>
+                    <p style="text-align: center;">
+                        Hãy nhập đầy đủ thông tin chi tiết sản phẩm bạn muốn bán vào bên dưới:
+                    </p>
+                    <h4>Thông tin cơ bản</h4>
+                    <div class="form-group row">
+                        <label for="input" class="col-sm-2 col-form-label">Tên sản phẩm</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="input" asp-for="auction.ProductName" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="input" class="col-sm-2 col-form-label">Danh mục sản phẩm</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" asp-for="auction.CategoryId" required>
+                                @foreach (var item in Model.AuctionCateList)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="input" class="col-sm-2 col-form-label">Mô tả sản phẩm</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="messageContent" rows="8"
+                                      asp-for="auction.Product_Content" placeholder="Mô tả thông tin chi tiết sản phẩm" required></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="input" class="col-sm-2 col-form-label">Tình trạng</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" asp-for="auction.Product_New" required>
+                                <option value="true">Mới</option>
+                                <option value="false">Đã qua sử dụng</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="input" class="col-sm-2 col-form-label">Giá khởi điểm</label>
+                        <div class="input-group col-sm-6">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">₫</div>
+                            </div>
+                            <input type="number" asp-for="auction.Price_Start" class="form-control" placeholder="Nhập vào" min="0" required>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="input" class="col-sm-2 col-form-label">Giá mua chốt</label>
+                        <div class="input-group col-sm-6">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">₫</div>
+                            </div>
+                            <input type="number" asp-for="auction.Price_End" class="form-control" placeholder="Nhập vào" min="0" required>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="input" class="col-sm-2 col-form-label">Thời gian bắt đầu</label>
+                        <div class="input-group col-sm-6">
+                            <input type="datetime-local" id="dateStart" class="form-control" asp-for="auction.Time_Start" onkeydown="return false" required>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="input" class="col-sm-2 col-form-label">Thời gian kết thúc</label>
+                        <div class="input-group col-sm-6">
+                            <input type="datetime-local" id="dateEnd" class="form-control" asp-for="auction.Time_End" onkeydown="return false" required>
+                        </div>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Hình ảnh sản phẩm</label>
+                        <div class="input-images-1" style="padding-top: .5rem;"></div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-7 col-form-label"></label>
+                        <div class="col-sm-4">
+                            <button type="submit" class="btn" id="btn-bg" onclick="showNotifi()">
+                                Gửi thông tin yêu cầu bán đấu
+                                giá
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/image-uploader.min.js"></script>
+    <script src="~/js/sweetalert2.all.min.js"></script>
+    <script>
+        $(function () {
+            $('.input-images-1').imageUploader();
+        });
+    </script>
+    <script>
+        //Function Add Days
+        Date.prototype.addDays = function (days) {
+            var date = new Date(this.valueOf());
+            date.setDate(date.getDate() + days);
+            return date;
+        }
+
+        //Function disable choose Day Start
+        //var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+        //var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
+        $(document).ready(function () {
+            elem = document.getElementById("dateStart")
+            var iso = new Date().addDays(7).toISOString();
+            var minDate = iso.substring(0, iso.length - 1);
+            elem.value = minDate
+            elem.min = minDate
+        });
+
+        //Function disable choose Day End
+        $(document).ready(function () {
+            const date = new Date();
+            elem = document.getElementById("dateEnd")
+            var iso = date.addDays(14).toISOString();
+            var minDate = iso.substring(0, iso.length - 1);
+            elem.value = minDate
+            elem.min = minDate
+        });
+    </script>
+
+    <script type="text/javascript">
+        function showNotifi(){
+        var arr = document.getElementsByTagName('input');
+        var namesp =  arr[0].value;
+        var cate = arr[1].value;
+        var description = arr[2].value;
+        var ProductNew = arr[3].value;
+        var price = arr[4].value;
+        var timeStart = arr[5].value;
+        var timeEnd = arr[6].value;
+        if(namesp == "" || description == "" || ProductNew == "" || price == "" || timeStart == "" || timeEnd == ""){
+            alert("please fill all fields")
+        }
+        //else{
+        //    Swal.fire(
+        //    'Gửi sản phẩm thành công',
+        //    'Đang phê duyệt sản phẩm của bạn',
+        //    'success'
+        //
+        }  
+    }
+    </script>
+}

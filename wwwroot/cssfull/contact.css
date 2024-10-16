@@ -1,0 +1,133 @@
+body{
+    margin:0;
+}
+
+.form-area{
+    width: auto;
+    height: 1150px;
+    margin: 0 auto;
+    padding: 0.5rem;
+    background-color: #f8f8f8;
+    margin-top: 12%;
+}
+
+#btn-bg{
+    color: #fff;
+    border-radius: 10px;
+    background-color: #f7921a;
+    color: white;
+    padding: 10px 20px;
+    position: absolute;
+    text-transform: uppercase;
+}
+
+#btn-bg:hover{
+    background-color: #efefef;
+    color: black;
+    border: 1px solid lightgray;
+}
+
+/* img */
+.drop-zone {
+    max-width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    border: 1px dashed black;
+    border-radius: 10px;
+}
+
+.drop-zone--over {
+    border-style: solid;
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+.drop-zone__thumb {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+}
+
+.drop-zone__thumb::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+    text-align: center;
+}
+.row-link{
+    /* background-color: #0056b3; */
+    width: auto;
+    height: 20px;
+    border-bottom: 1px solid #DDDDDD;
+    padding-bottom: 40px;
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-top: 70px;
+}
+.breadcrumb {
+    background: transparent;
+    margin-bottom: 0px;
+    padding-right: 0;
+    color: #999999 ;
+}
+.breadcrumb li {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+}
+a {
+    background-color: transparent;
+    text-decoration: none;
+
+}
+.breadcrumb li a{
+    color: #999999 ;
+}
+@media only screen and (max-width: 1824px) and (min-width: 500px) {
+    .box {
+        padding-top: 60px !important;
+        padding-right: 30px;
+        padding-bottom: 85px;
+        padding-left: 30px;
+    }
+
+    footer{
+        margin-top: 5%;
+    }
+}
+
+@media only screen and (min-width: 1500px)  {
+    .box {
+        padding-top: 60px !important;
+        padding-right: 30px;
+        padding-bottom: 85px;
+        padding-left: 30px;
+    }
+    footer{
+        margin-top: 90px;
+    }
+}
+    
+
+
+
+
+

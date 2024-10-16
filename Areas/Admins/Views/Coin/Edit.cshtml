@@ -1,0 +1,94 @@
+﻿@model Project.Models.DtosForAdmin.UpdateCoinDtos
+@{
+    ViewData["Title"] = "BuyCoinByInput";
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<style>
+    .InputCoin {
+        margin-bottom: auto;
+        height: 70px;
+        background-color: #fff;
+        padding: 10px
+    }
+
+    .search-input {
+        color: white;
+        border: 0;
+        outline: 0;
+        background: none;
+        width: 0;
+        margin-top: 5px;
+        caret-color: transparent;
+        line-height: 40px;
+        transition: width 0.4s linear
+    }
+
+    .InputCoin .search-input {
+        padding: 0 10px;
+        width: 550px;
+        caret-color: #536bf6;
+        font-size: 21px;
+        font-weight: 300;
+        color: black;
+        transition: width 0.4s linear
+    }
+
+    .search:hover > .search-icon {
+        background: #1A237E;
+        color: #fff
+    }
+
+    .search-icon {
+        height: 50px;
+        width: 50px;
+        float: right;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        background-color: #536bf6
+    }
+
+    a:link {
+        text-decoration: none
+    }
+
+    .container1 {
+        background-color: #eeeeee;
+    }
+
+    .col-6 {
+        margin-top: 35px;
+    }
+
+
+
+</style>
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="breadcrumb-holder">
+                <h1 class="main-title float-left">Quản Lý xu</h1>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+                    
+<div class="row">
+        <div class="d-flex justify-content-center mt-3" style="height: 140px;background-color: #eff6f6;"> 
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <label class="d-flex"> Tài khoản người dùng: @Model.UserName </label>
+                <input type="hidden" asp-for="Id" />
+                <div class="InputCoin" style="border-radius: 10px;">
+                    <input type="number" min="0" asp-for="coin" class="search-input" placeholder="Nhập số xu muốn cập nhập...">
+                    <span asp-validation-for="coin" class="text-danger"></span>
+                    <button type="submit" class="search-icon" style="border-radius: 7px;">
+                        <i class="fas fa-pen-alt"></i>
+                    </button>
+                </div>
+            </form>
+    </div>
+</div>
+</div>

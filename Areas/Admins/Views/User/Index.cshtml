@@ -1,0 +1,126 @@
+﻿@model IEnumerable<Project.Models.Dtos.ApplicationUserDtos>
+@{
+    ViewData["Title"] = "Index";
+}
+<!-- Datatable CSS -->
+<link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"/>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="breadcrumb-holder d-flex flex-row">
+                <h1 class="main-title float-left">Quản Lý người dùng</h1>
+                <a class="btn btn-danger mr-3" style="margin-left:65%; margin-bottom:1%" type="button" asp-action="CreateUser" > + Create User</a>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+                    
+<div class="row">
+    <div class="nav nav-tabs mb-4" id="nav-tab" role="tablist">
+      @*<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact">Contact</a>*@
+    </div>
+
+        <div class="col-md-12">
+
+            <table id="myTable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Người Sử dụng</th>
+                        <th>Họ và tên</th>
+                        <th>SDT</th>
+                        <th>Email</th>
+                        <th>Xu</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr role="row" class="odd">
+                            <td>@item.UserName</td>
+                            <td>@(item.FirtsName+" "+item.LastName)</td>
+                            <td>@(item.PhoneNumber)</td>
+                            <td>@(item.Email)</td>
+                           
+                            <td style="text-align:left;"><span class="badge badge-info" style="background-color:red;font-size:18px;">$@item.coin</span></td>
+                            
+                            <td>
+                                
+                                <div class="d-flex flex-row">
+                            <a class="btn btn-danger mr-3" type="button" asp-action="EditUser" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-danger mr-3" type="button" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                             <button class="btn btn-danger btn-sm rounded-0" type="button"  data-toggle="modal" data-target="#exampleModalCenter" value="@item.Id" >Delete</button>
+                            
+                                </div>
+                                
+                            </td>
+                            
+                            </tr>
+                           
+                    }
+                     <div id="exampleModalCenter" class="modal fade">
+                                    <div class="modal-dialog modal-confirm">
+                                        <div class="modal-content">
+                                            <div class="modal-header flex-column">
+                                                <div class="icon-box">
+                                                    <i class="fas fa-times"></i>
+                                                </div>
+                                                <h4 class="modal-title w-100">Are you sure?</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Do you really want to delete these records? This process cannot be undone.</p>
+                                            </div>
+                                            <div class="modal-footer justify-content-center">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <form asp-action="Delete">
+                                                    <input type="hidden" id="idremove" name="Id" value="" />
+                                                    
+                                                    <input type="submit" value="Delete"  class="btn btn-danger" />
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                         </div>
+                         
+                </tbody>
+            </table>
+
+        </div>
+    
+</div>
+</div>
+
+@section Scripts{
+    <!-- Datatables js -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+     $("button").click(function() {
+var id_remove = $(this).attr('value');
+    console.log(id_remove);
+       $("#idremove").attr("value", id_remove );
+});
+     
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "language": {
+                    "lengthMenu": 'Hiện thị  <select>' +
+                        '<option value="10">10</option>' +
+                        '<option value="20">20</option>' +
+                        '<option value="30">30</option>' +
+                        '<option value="40">40</option>' +
+                        '<option value="50">50</option>' +
+                        '<option value="-1">Tất cả</option>' +
+                        '</select> Dòng',
+                    "search": "Tìm:",
+                    "info": "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
+                    "paginate": {
+                        "next": "Tới",
+                        "previous": "Lùi lại"
+                    }
+                }
+            });
+        });
+    </script>
+}

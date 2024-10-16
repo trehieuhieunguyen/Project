@@ -1,0 +1,631 @@
+﻿@model Project.Models.Dtos.AuctionDtos
+@inject SignInManager<IdentityUser> SignInManager
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "Details";
+    DateTime time = new DateTime();
+    var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+}
+<link rel="stylesheet" href="~/lib/toastr/build/toastr.css">
+<link rel="stylesheet" href="~/cssfull/dg1.css?v=3">
+<style>
+    .slider-img{
+        min-height: 500px;
+        max-height: 500px;
+        min-width: 540px;
+        max-width: 540px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 30px;
+    }
+    .btn-info {
+        color: #fff;
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+        width: 50px;
+    }
+    .cursor{
+        min-height: 100px;
+        max-height: 100px;
+    }
+    .time_date{
+        color: #747474;
+        display: block;
+        font-size: 12px;
+        margin: 8px 0 0;
+    }
+    .font{
+        vertical-align: inherit;
+    }
+    #style-1::-webkit-scrollbar-track
+    {
+	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	    border-radius: 10px;
+	    background-color: #F5F5F5;
+    }
+
+    #style-1::-webkit-scrollbar
+    {
+	    width: 12px;
+	    background-color: #F5F5F5;
+    }
+
+    #style-1::-webkit-scrollbar-thumb
+    {
+	    border-radius: 10px;
+	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	    background-color: #555;
+    }
+        #style-1::-webkit-scrollbar-track
+    {
+	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	    border-radius: 10px;
+	    background-color: #F5F5F5;
+    }
+
+    .update {
+        position: absolute;
+        left: 33%;
+        background-color: #04AA6D;
+        color: #fff;
+        height: 50%;
+        width: 53px;
+    }
+
+    .delete{
+        position: absolute;
+        left: 51%;
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+        height: 50%;
+        width: 53px;
+    }
+    /*Modal css*/
+    .modal-confirm {
+        color: #636363;
+        width: 400px;
+    }
+        .modal-confirm .modal-content {
+            padding: 20px;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+            font-size: 14px;
+        }
+        .modal-confirm .modal-header {
+            border-bottom: none;
+            position: relative;
+        }
+        .modal-confirm h4 {
+            text-align: center;
+            font-size: 26px;
+            margin: 30px 0 -10px;
+        }
+        .modal-confirm .close {
+            position: absolute;
+            top: -5px;
+            right: -2px;
+        }
+        .modal-confirm .modal-body {
+            color: #999;
+        }
+        .modal-confirm .modal-footer {
+            border: none;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 13px;
+            padding: 10px 15px 25px;
+        }
+            .modal-confirm .modal-footer a {
+                color: #999;
+            }
+        .modal-confirm .icon-box {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            border-radius: 50%;
+            z-index: 9;
+            text-align: center;
+            border: 3px solid #f15e5e;
+        }
+            .modal-confirm .icon-box i {
+                color: #f15e5e;
+                font-size: 46px;
+                display: inline-block;
+                margin-top: 13px;
+            }
+        .modal-confirm .btn {
+            color: #fff;
+            border-radius: 4px;
+            background: #60c7c1;
+            text-decoration: none;
+            transition: all 0.4s;
+            line-height: normal;
+            min-width: 120px;
+            border: none;
+            min-height: 40px;
+            border-radius: 3px;
+            margin: 0 5px;
+            outline: none !important;
+        }
+        .modal-confirm .btn-info {
+            background: #c1c1c1;
+        }
+            .modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {
+                background: #a8a8a8;
+            }
+        .modal-confirm .btn-danger {
+            background: #f15e5e;
+        }
+            .modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+                background: #ee3535;
+            }
+    .trigger-btn {
+        display: inline-block;
+        margin: 100px auto;
+    }
+</style>
+
+<div class="container2">
+    <div class="row row2">
+        <!-- Col sản phẩm liên quan -->
+    <div class="col-2 bg-cl-r">
+
+    </div>
+    <!-- Chi tiết sản phẩm - Thông tin đấu giá -->
+    <div class="col-8 bg-cl-c" style="border-radius: 25px;">
+        <div class="row row-productname">
+            <div class="col-7 col-productname">
+                <p class="product-name1 mt-3">@Model.ProductName - Thông tin</p>
+            </div>
+            @if(@Model.Time_Start > DateTime.Now && @Model.ApplicationUserId == userId){
+            <div class="col-5 mt-2 mb-2" style="border: 1px solid #6c757d;border-radius: 20px;">
+                <button type="button" onclick="location.href='/Auction/Edit/@Model.Id'" class="update btn btn-warning btn-sm"><i class="fas fa-pencil-alt" aria-hidden="true"></i></button>
+                <button type="button" data-toggle="modal" data-target="#ModalCenter" class="delete btn btn-danger btn-sm"><i class="far fa-trash-alt" aria-hidden="true"></i></button>
+            </div>
+            }
+        </div>
+            @if(Model.Product_Status == false)
+            {
+                <div>
+                    <div class="col-12">
+                        <p class="text-white bg-danger p-3 mb-2 mt-2" style="border-radius: 10px;">Sản phẩm của bạn chưa được duyệt, vì vậy chỉ mình bạn mới có thể xem sản phẩm này</p>
+                    </div>
+                    <div class="col-5">
+                    </div>
+                </div>
+            }
+            <div class="row row-product-img">
+            <div class="col-7 col-product-img">
+                <div class="container">
+                    <div class="mySlides">
+                        <div class="numbertext"></div>
+                        <img src="" class="slider-img" >
+                        <button class="btn btn-info" onclick="prev()"><</button>
+                            <button class="btn btn-info" onclick="next()" style="float: right;">></button>
+                        </div>
+                        
+                        <div class="caption-container">
+                        <p id="caption"></p>
+                        </div>
+                        
+                        <div class="row">
+                            @foreach(var item in ViewBag.Showimage)
+                            {
+                                <div class="column">
+                                    <img class="demo cursor" src="/images/Product/@Model.AuctionImgFolder/@item" style="width: 100%" onclick="currentSlide(1)" alt="">
+                                </div>
+                            }
+                            
+                        
+                        </div>
+                </div>
+                <div class="container container-product-info">
+                    <h2 class="small-header product-description">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Chi tiết sản phẩm</font>
+                        </font>
+                </h2>
+                <div class="item-page-column-secondary-value description">
+                    <p>
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;"> @Model.Product_Content</font>
+                            </font>
+                    </p>                                           
+                </div>
+                    
+                </div>
+                    
+            </div>
+            <div class="col-4 col-auction-info" style="padding-right: 0;">
+                <div class="item-page" style="border-radius: 10px;">
+                    <div class="item-page-column">
+                        <div class="item-page-column-header">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Giá cao nhất:</font>
+                            </font>
+                        </div>
+                        <div class="item-page-column-price highest-price">
+                            <span>
+                                <font style="vertical-align: inherit;">
+                                    <font id="TopPrice" style="vertical-align: inherit;">0</font> Xu
+                                </font>
+                            </span>
+                        </div>
+                        <div class="item-page-column-secondary-value">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Giá khởi điểm</font>
+                            </font>
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">: @Model.Price_Start Xu</font>
+                            </font>
+                        </div>
+                        <div class="item-page-column-secondary-value">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Bước giá</font>
+                            </font>
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">: </font>
+                            </font>
+                            <font style="vertical-align: inherit;">
+                                <font id="StepPrice" style="vertical-align: inherit;"></font> Xu
+                            </font>
+                        </div>
+                        <div class="item-page-column-secondary-value">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Giá chốt</font>
+                            </font>
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">: @Model.Price_End Xu</font>
+                            </font>
+                        </div>
+                    </div>
+                    <div class="item-page-column" id="TimeCanRemove">
+                        <div class="item-page-column-header">
+                            <font style="vertical-align: inherit;">
+                                @if(@Model.Time_Start > DateTime.Now){
+                                    <font style="vertical-align: inherit;">Được đấu giá sau:</font>
+                                    }else if(@Model.Time_Start < DateTime.Now && @Model.Time_End > DateTime.Now)
+                                    {
+                                        <font style="vertical-align: inherit;">Hạn đấu giá:</font>
+                                    }else
+                                    {
+                                       <font style="vertical-align: inherit;">Đấu giá đã kết thúc</font>
+                                    }
+                              </font>
+                        </div>
+                        <div class="item-page-column-price">
+                            <span>
+                                <font style="vertical-align: inherit;">
+                                    @if(@Model.Time_End < DateTime.Now){
+                                        <font style="vertical-align: inherit;"></font>
+                                    }else{
+                                    <font style="vertical-align: inherit;" id="get-timedown"></font>
+                                    }
+                                </font>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- row nâng giá thầu! -->
+                @if (SignInManager.IsSignedIn(User))
+                    {
+                        @if (@Model.Time_Start < DateTime.Now && @Model.Time_End > DateTime.Now && @Model.Product_StatusBuy == false)
+                        {
+                            <div id="Auction">
+                                <div class="test-bid-form">
+                                    <div class="item-page-bidding-box">
+
+                                        <div class="item-page-bidding-tab-container">
+                                            <div class="item-page-bidding-container">
+                                                <div class="item-page-bidding-field-wrapper">
+                                                    <input type="number" id="message" name="amount" autocomplete="off" placeholder="@(Model.Price_Start * 1.2)" min="@(Model.Price_Start * 1.2)" max="@Model.Price_End" class="item-page__bidding-form__field js-bidding-amount test-bidding-amount test-bid-field" pattern="[0-9]*" value="">
+                                                    <div class="item-page__bidding-form__currency test-bidding-currency">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Xu</font>
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="item-page-bidding-button-wrapper">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">
+                                                            <input type="submit" id="sendMessage" class="button button-wrapper" name="commit" value="Đấu giá">
+                                                        </font>
+                                                    </font>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="item-page-bid-instructions">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">Nhập giá thầu tối thiểu phải bằng tổng: giá cao nhất và bước giá. </font>
+                                            </font>
+                                        </p>
+                                        <span id="ErrorStep" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    <h2 class="small-header">
+                        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lịch sử đấu giá</font></font>
+                    </h2>
+                <div class="bid-history" id="style-1" style="overflow: scroll;height: 300px;overflow-x: hidden;">
+                    
+                    <!-- tab history users auction -->
+                    <table id="messages" class="bid-list">
+
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if(@Model.Time_Start > DateTime.Now){
+    <!-- Modal -->
+    <div id="ModalCenter" class="modal fade" style="background-color: #a1a1a4;">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header flex-column">
+                    <div class="icon-box">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <h4 class="modal-title w-100">Bạn có chắc chắn muốn xóa?</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <p>Bạn có chắc chắn muốn xóa sản phẩm này? Sau khi xóa sản phẩm này không thể khôi phục lại.</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <form asp-action="Delete" asp-controller="Auction">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="submit" value="Xóa" class="btn btn-danger" />
+                    </form>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        var slider_img = document.querySelector('.slider-img');
+        var i = 0;
+        var array = @Html.Raw(JsonConvert.SerializeObject(ViewBag.Showimage));
+        var images = [];
+        for (let i = 0; i < array.length; i++) {
+            images[i] = array[i];
+        }
+        window.onload = setImg();
+        function prev() {
+            if (i <= 0) i = images.length;
+            i--;
+            return setImg();
+        }
+        function next() {
+            if (i >= images.length - 1) i = -1;
+            i++;
+            return setImg();
+        }
+        function setImg() {
+            return slider_img.setAttribute('src', "/images/Product/@Model.AuctionImgFolder/" + images[i]);
+        }
+    </script> 
+     @if(@Model.Time_Start < DateTime.Now && @Model.Time_End > DateTime.Now)
+     {
+            time = @Model.Time_End;
+     }else if(@Model.Time_Start > DateTime.Now)
+     { 
+             time = @Model.Time_Start;
+     }
+         <!-- Get-TimeDown -->
+    <script>
+            // Set the date we're counting down to
+            const countDownDate = new Date("@time").getTime();
+            
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+            
+              // Get today's date and time
+              var now = new Date().getTime();
+                
+              // Find the distance between now and the count down date
+              var distance = countDownDate - now;
+                
+              // Time calculations for days, hours, minutes and seconds
+              var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+              var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+              var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+              // Output the result in an element with id="demo"
+              document.getElementById("get-timedown").innerHTML = days + "d " + hours + "h "
+              + minutes + "m " + seconds + "s ";
+                
+              // If the count down is over, write some text 
+              if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("get-timedown").innerHTML = "EXPIRED";
+              }
+            }, 1000);
+    </script>
+    
+    <script type="text/javascript" src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script>
+        "use strict";
+        var url = window.location.origin;
+        var connection = new signalR.HubConnectionBuilder()
+            .withUrl(url + "/hubs/messages?RecipientProductId=@Model.Id")
+            .withAutomaticReconnect().build();
+
+        connection.on("ReceiveMessageThread", function (messages) {
+            var msgusername = "";
+            var msgContent = "";
+            var msgPhoto = "";
+            var msgDateSent = "";
+            for (let index = 0; index < messages.length; index++) {
+                msgusername = messages[index].senderUsername;
+                msgContent = messages[index].content;
+                msgPhoto = messages[index].senderPhotoUrl;
+                msgDateSent = messages[index].messageSent;
+                CreateChild(msgusername, msgContent, msgPhoto, msgDateSent);
+            }
+            $("#TopPrice").html(msgContent);
+            $("#message").attr("min", Math.ceil(Number.parseFloat(msgContent)*1.2));
+            var min = Math.ceil($("#message").attr('min'));
+            if((Number.parseInt(min) >= @Model.Price_End)){
+                $("#StepPrice").html((Math.ceil((min/1.2))+" đến " +@Model.Price_End));
+                 $("#message").attr("placeholder", ("từ "+Math.ceil((min/1.2))+" đến " +@Model.Price_End));
+            }else{
+                $("#StepPrice").html(Math.ceil(Number.parseFloat(msgContent)*1.2));
+                $("#message").attr("placeholder", Math.ceil(Number.parseFloat(msgContent)*1.2));
+            }
+            if($("#message").attr("min") == "NaN"){
+                $("#TopPrice").html(0);
+                $("#StepPrice").html(Math.ceil(@Model.Price_Start*1.2));
+                $("#message").attr("placeholder", Math.ceil(@Model.Price_Start*1.2));
+                $("#message").attr("min", Math.ceil(@Model.Price_Start*1.2));
+            }
+        });
+
+        connection.on("NewMessage", function (message) {
+            var msgusername = message.senderUsername;
+            var msgContent = message.content;
+            var msgPhoto = message.senderPhotoUrl;
+            var msgDateSent = message.messageSent;
+            CreateChild(msgusername, msgContent, msgPhoto, msgDateSent);
+            $("#TopPrice").html(msgContent);
+            $("#message").attr("min", Math.ceil(Number.parseFloat(msgContent)*1.2));
+            var min = Math.ceil($("#message").attr('min'));
+            if((Number.parseInt(min) >= @Model.Price_End)){
+                $("#StepPrice").html((Math.ceil((min/1.2))+" đến " +@Model.Price_End));
+                 $("#message").attr("placeholder", ("từ "+Math.ceil((min/1.2))+" đến " +@Model.Price_End));
+            }else{
+                $("#StepPrice").html(Math.ceil(Number.parseFloat(msgContent)*1.2));
+                $("#message").attr("placeholder", Math.ceil(Number.parseFloat(msgContent)*1.2));
+            }
+            Get();
+            toastr.success("Top 1 đã thay đổi","",{"positionClass": "toast-bottom-right"});
+            if(message.content == @Model.Price_End){
+                $("#Auction").remove();
+                $("#TimeCanRemove").remove();
+                EditTimeBuyEnd();
+            }
+        });
+
+        if (this.connection) { connection.stop();}
+        connection.start().catch(function(err) {
+            return console.error(err.toString());
+        });
+
+        $("#sendMessage").click(function (event) {
+            var messages = document.getElementById("message").value;
+            var min = Math.ceil($("#message").attr('min'));
+            var valueTop = $('#messages').children().first().attr('id');
+            var getusername = $('#username').text();
+            var moneyofyou = Number.parseFloat($("#soduchinh").text());
+
+            if(moneyofyou < messages){
+                toastr.error("Tài khoản của bạn hiện không đủ xu, xin hãy mua thêm!","",{"positionClass": "toast-bottom-right"});
+                return;
+            }
+
+            if(valueTop == getusername){
+                if(messages != @Model.Price_End){
+                    toastr.info("Bạn đã là Top 1, chỉ có thể mua chốt","",{"positionClass": "toast-bottom-right"});
+                    return;
+                    }
+            }
+            if(messages == @Model.Price_End){
+                connection.invoke("SendMessageProduct", {
+                RecipientProductId: "@Model.Id",
+                Content: Number.parseFloat(messages)
+                }).then(function () {
+                    toastr.info("Success tài khoản - "+messages+" Xu","",{"positionClass": "toast-bottom-right"});
+                    document.getElementById("message").value = "";
+                }).catch(function (err) {
+                    return console.error(err.toString());
+                });
+                  return;
+            }
+
+            var check = (Number.parseInt(min) > @Model.Price_End) ? (messages < @Model.Price_End && messages >= Number.parseFloat(min/1.2)) : (messages < @Model.Price_End && messages >= Number.parseFloat(min));
+            if(check){
+            connection.invoke("SendMessageProduct", {
+                
+                RecipientProductId: "@Model.Id",
+                Content: Number.parseFloat(messages)
+            }).then(function () {
+                toastr.info("Success tài khoản - "+messages+" Xu","",{"positionClass": "toast-bottom-right"});
+                document.getElementById("message").value = "";
+            }).catch(function (err) {
+                return console.error(err.toString());
+            });
+            }else{
+                var max = $("#message").attr('max');
+                var messa = (Number.parseInt(min*1.2) > @Model.Price_End) ? ("Nhập dữ liệu sai : \n" + "Nhập từ "+ Math.ceil((min/1.2)) + " Đến " + max) : ("Nhập dữ liệu sai : \n" + "Nhập từ "+ (min) + " Đến " + max);
+                $("#ErrorStep").text(messa);
+            }
+            event.preventDefault();
+        });
+
+        function CreateChild(msgusername, msgContent, msgPhoto, msgDateSent) {
+
+            var m = new Date(msgDateSent);
+            var datesend =
+                ("0" + (m.getMonth()+1)).slice(-2) + "/" +
+                ("0" + m.getDate()).slice(-2) + "/" +
+                m.getFullYear() + " " +
+                ("0" + m.getHours()).slice(-2) + ":" +
+                ("0" + m.getMinutes()).slice(-2) + ":" +
+                ("0" + m.getSeconds()).slice(-2);
+
+            var result = '<tbody id="'+ msgusername +'">'
+                        +'<tr class="bid-list_entry">'
+                        +'<td class="bid-list_bidder center"><img src='+msgPhoto+' class="avatar" /></td>'
+                        +'<td class="bid-list_bidder">'
+                        +'<span class="bid-list_label">'
+                        +'<font><font>'+msgusername+'</font></font>'
+                        +'</span>'
+                        +'<span class="time_date">'+datesend+'</span>'
+                        +'</td>'
+                        +'<td class="bid-list-amount highest-price">'
+                        +'<font><font>'+msgContent+' Xu</font></font>'
+                        +'</td>'
+                        +'</tr>'
+                        +'</tbody>'
+
+            return $("#messages").prepend(result);
+        }
+        function EditTimeBuyEnd(){
+            var result = '<div class="item-page-column" id="TimeCanRemove">' +
+                '<div class="item-page-column-header">' +
+                '<font style="vertical-align: inherit;">' +
+                '<font style="vertical-align: inherit;">Đấu giá đã kết thúc</font>' +
+                '</font>' +
+                '</div>' +
+                '<div class="item-page-column-price">' +
+                '<span>' +
+                '<font style="vertical-align: inherit;">' +
+                '<font style="vertical-align: inherit;"></font>' +
+                '</font>' +
+                '</span>' +
+                '</div>' +
+                '</div>';
+                 
+            return $(".item-page").append(result);
+        }
+    </script>
+    
+    <script src="~/jsfull/bootstrap.min.js?v=4"></script>
+    <script src="~/lib/toastr/build/toastr.min.js"></script>
+}

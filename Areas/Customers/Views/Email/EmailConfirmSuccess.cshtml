@@ -1,0 +1,47 @@
+﻿@model string
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+<style>
+    body {
+        margin-top: 20px;
+    }
+
+    .card-box .card-drop {
+        color: #9a9da0;
+        font-size: 20px;
+        line-height: 1px;
+        padding: 0px 5px;
+        display: inline-block;
+    }
+
+    .text-success {
+        !important;
+    }
+
+    .text-muted {
+        color: #9a9da0 !important;
+    }
+
+    .logo-alt-box h5 {
+    }
+
+    .container1 {
+        background-color: #eeeeee;
+        height: 188px;
+    }
+
+</style>
+<div class="jumbotron text-center" style="padding-top: 150px">
+    <h1 class="display-3">Cảm ơn bạn đã sử dụng dịch vụ!</h1>
+    <p class="lead"><strong style="color: #ed0000;">Vui lòng kiểm tra email của bạn</strong> để được hướng dẫn thêm về nhận dạng tài khoản của bạn</p>
+    <hr>
+    <p>
+        Gặp sự cố? <a href="">Liên hệ với chúng tôi</a>
+    </p>
+    <p class="lead">
+        <a class="btn btn-primary btn-sm" asp-controller="Home" asp-action="Index" asp-area="Customers">Đến trang chủ</a>
+    </p>
+</div>

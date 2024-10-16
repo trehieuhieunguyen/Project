@@ -1,0 +1,25 @@
+﻿
+#backtop {
+    font-size: 40px;
+    color: #f7921a;
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    cursor: pointer;
+}
+
+#backtop:hover {
+    color: gray;
+}
+
+.time-part {
+    background-color: #f7921a;
+    color: white;
+    font-size: 19px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 300px;
+    height: 30px;
+    z-index:1234;
+}

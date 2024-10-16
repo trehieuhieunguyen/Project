@@ -1,0 +1,82 @@
+﻿@model Project.Models.Dtos.SaleCoinDtos
+@{
+    ViewData["Title"] = "Create";
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<style>
+    .InputCoin {
+        margin-bottom: auto;
+        height: 70px;
+        background-color: #fff;
+        padding: 10px
+    }
+
+    .search-input {
+        color: white;
+        border: 0;
+        outline: 0;
+        background: none;
+        width: 0;
+        margin-top: 5px;
+        caret-color: transparent;
+        line-height: 40px;
+        transition: width 0.4s linear
+    }
+
+    .InputCoin .search-input {
+        padding: 0 10px;
+        width: 550px;
+        caret-color: #536bf6;
+        font-size: 21px;
+        font-weight: 300;
+        color: black;
+        transition: width 0.4s linear
+    }
+
+    .search:hover > .search-icon {
+        background: #1A237E;
+        color: #fff
+    }
+
+    .search-icon {
+        height: 50px;
+        width: 50px;
+        float: right;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        background-color: #536bf6
+    }
+
+    a:link {
+        text-decoration: none
+    }
+
+    .container1 {
+        background-color: #eeeeee;
+    }
+
+    .col-6 {
+        margin-top: 35px;
+    }
+</style>
+<div class="container-fluid" style="background-color: #eeeeee;">
+    <div class="container p-5">
+        <div class="d-flex justify-content-center h-100">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="InputCoin" style="border-radius: 10px;">
+                    <input type="email" asp-for="PaypalEmail" class="search-input" placeholder="Nhập Paypal Email..." style="width: 40%; border-right: 4px solid red;">
+                    <span asp-validation-for="PaypalEmail" class="text-danger"></span>
+                    <input type="number" min="1" asp-for="amountcoin" class="search-input" placeholder="Nhập số xu cần rút..." style="width: 40%;">
+                    <span asp-validation-for="amountcoin" class="text-danger"></span>
+                    <button type="submit" class="search-icon" style="border-radius: 7px;">
+                        <i class="fas fa-search-dollar"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

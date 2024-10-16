@@ -1,0 +1,770 @@
+/*Novatic auction core css section 1 */
+.vc_custom_1574250633437 {
+    margin-bottom: 0px !important;
+    padding-top: 80px !important;
+    padding-bottom: 35px !important;
+}
+
+.vc_custom_1565679559621 {
+    margin-bottom: 0px !important;
+    padding-top: 30px !important;
+    padding-bottom: 35px !important;
+}
+
+.vc_custom_1567498077044 {
+    margin-bottom: 0px !important;
+    padding-top: 38px !important;
+    padding-bottom: 40px !important;
+}
+
+.vc_custom_1567498104413 {
+    margin-bottom: 20px !important;
+    padding-top: 0px !important;
+}
+
+.vc_custom_1567498128026 {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-bottom: 80px !important;
+}
+
+.vc_custom_1570010856447 {
+    margin-bottom: 0px !important;
+    padding-top: 45px !important;
+    padding-bottom: 48px !important;
+    background-color: #f9f9f9 !important;
+}
+
+.vc_custom_1496911267002 {
+    padding-top: 0px !important;
+}
+
+.vc_custom_1568015599766 {
+    margin-right: -5px !important;
+    margin-bottom: 28px !important;
+    margin-left: -5px !important;
+}
+
+.vc_custom_1537949981399 {
+    padding-top: 10px !important;
+}
+
+.ellipsis1 {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 1 !important;
+    -webkit-box-orient: vertical !important;
+}
+
+.ellipsis2 {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+}
+
+.ellipsis3 {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+}
+
+.ellipsis4 {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important;
+}
+
+.sub-menu > li {
+    width: 100%;
+}
+
+
+.woocommerce form .form-row textarea, .woocommerce form .form-row select, .woocommerce form .form-row input.input-text, .woocommerce-page form .form-row input.input-text {
+    border: 1px solid #24243885 !important;
+}
+
+#propertyVideo {
+    z-index: 9999;
+    border: 2px;
+    border-style: groove;
+    border: 1px solid #3333333d;
+    padding: 0;
+    box-shadow: 5px 10px 8px #888888;
+    float: right;
+    height: 220px;
+    width: 100%;
+}
+
+#propertyMapFrame {
+    z-index: 9999;
+    border: 2px;
+    border-style: groove;
+    border: 1px solid #3333333d;
+    padding: 0;
+    box-shadow: 5px 10px 8px #888888;
+    width: 100%;
+    height: 320px
+}
+
+.auctionpropertyvideo {
+    padding: 5px 3% 5px 3%;
+    z-index: 9999;
+    border-style: groove;
+    border: 1px solid #3333333d;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+/*cho nhỏ item title*/
+.woocommerce ul.products li.product .archive-product-title a {
+    font-weight: unset !important;
+}
+
+.section-title {
+    font-weight: unset !important;
+    font-size: 22px !important;
+}
+
+.details-container > div.details-item .amount, .details-container > div.details-item ins {
+    font-weight: 500 !important;
+    color: #006fb6;
+}
+
+
+.post-4431 .details-price-container.details-item {
+    text-align: center !important;
+}
+
+.post-4468 .details-price-container.details-item {
+    text-align: left !important;
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 480px) {
+    .woocommerce ul.products[class*=columns-] li.product, .woocommerce-page ul.products[class*=columns-] li.product {
+        margin-top: 10px !important;
+    }
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 768px) {
+    .woocommerce_categories2 .woocommerce-title-metas {
+        padding-top: unset !important;
+    }
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 480px) {
+    .post-4331 .details-container > div.details-item {
+        width: 100%;
+        float: left;
+        text-align: center;
+    }
+}
+
+
+@media only screen and (max-width: 1023px) and (min-width: 768px) {
+    #primary .woocommerce_categories2 ul.products li.product, .woocommerce-page ul.products li.product {
+        width: 95% !important;
+        min-height: unset !important;
+    }
+}
+
+.bot_nav_cat_inner {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.ibid-contact.row {
+    max-width: unset !important;
+}
+
+.bot_nav_cat .bot_nav_cat_wrap {
+    display: none;
+}
+
+/*Responsive standarts*/
+
+
+.pcHidden {
+    display: block !important;
+}
+
+.mobileHidden {
+    display: none !important;
+}
+
+@media (min-width: 768px) {
+  
+
+    .navbar-collapse {
+        /*width: 91% !important;*/
+    }
+
+
+    .noPaddingDesktop {
+        padding: 0 !important;
+    }
+
+    .pcHidden {
+        display: none !important;
+    }
+
+    .mobileHidden {
+        display: block !important;
+    }
+
+    .section-title {
+        font-weight: unset !important;
+        font-size: 24px !important;
+    }
+    /* chi tiết tài sản */
+    #formBidding .buttons_added {
+        /*width: 65% !important;*/
+        width: 70% !important;
+        margin-right: 3% !important;
+    }
+
+    #propertyMetaInfo #bidValue {
+        font-size: 2em !important;
+        width: 62%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .my-account-navbar {
+        display: block !important;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1023px) {
+    .my-account-navbar {
+        display: block !important;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .my-account-navbar {
+        display: block !important;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .hiddenUnder1024 {
+        display: none !important;
+    }
+
+    #ContactSwap .ibid-contact.row {
+        margin: 0px !important;
+    }
+
+    .products_by_categories, .woocommerce_categories2 > .products_category .category.item {
+        padding: 0px !important;
+    }
+}
+/* Fix khoảng trắng*/
+.vc_custom_1574250633437 {
+    padding-bottom: 0px !important;
+}
+
+.ibid-breadcrumbs .row {
+    padding-bottom: 10px !important;
+}
+
+.dokan-store #main {
+    padding-top: 20px !important;
+}
+
+.ibid-breadcrumbs {
+    padding: 20px 0 0px !important;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation {
+    /*width: 25% !important;*/
+}
+
+
+/* Login register font family*/
+#signup-modal-content .woocommerce-form-register.register input[type="text"],
+#signup-modal-content .woocommerce-form-register.register input[type="email"],
+#signup-modal-content .woocommerce-form-register.register input[type="tel"],
+#signup-modal-content .woocommerce-form-register.register input[type="password"],
+#signup-modal-content .woocommerce-form-register.register textarea {
+    font-family: Montserrat !important;
+}
+
+.modeltheme-modal #loginform input[type="text"], .modeltheme-modal #loginform input[type="password"] {
+    font-family: Montserrat !important;
+}
+/*fix popup */
+
+@media only screen and (max-width: 360px) {
+    .woocommerce div.product div.images div.woocommerce-product-gallery__image:nth-child(n+2) {
+        width: 24% !important;
+        margin-top: 4px !important;
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+    .page article.type-page {
+        padding: 30px 0 !important;
+    }
+
+ 
+
+    .swal2-popup {
+        width: 96% !important;
+        bottom: 20px;
+    }
+
+    footer .footer-top h1.widget-title {
+        font-size: 17px !important;
+    }
+
+    .woocommerce_categories2 ul.products li.product .archive-product-title {
+        padding: 10px 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .woocommerce ul.products li.product .archive-product-title a {
+        /*Start Modify 8:45 - 22/07/2020: TKD chỉnh sửa title ellipsis bị lỗi*/
+        /*padding: 5px 0px !important;*/
+        padding-top: 5px !important;
+        /*End Modify*/
+    }
+
+    .woocommerce div.product div.images .woocommerce-product-gallery__image:nth-child(n+2) {
+        width: 24.2% !important;
+        margin-top: 4px !important;
+    }
+    /* LOGIN FORM*/
+    #modal-log-in.modeltheme-modal {
+        padding: 0 !important;
+        width: 100%;
+        /*height: 100vh;*/
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        overflow-y: scroll;
+        border-radius: 0 !important;
+    }
+
+    #registerTab {
+        /*max-height: 100vh !important;*/
+        max-height: 90vh !important;
+        overflow-y: scroll !important;
+    }
+    /*login*/
+    .loginLogoContainer {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .loginLogo {
+        margin: 30px auto;
+        display: block;
+        width: 30%;
+        /*width: 50%;*/
+        height: auto;
+    }
+
+    #registerTab .control-label-Novatic, #login-modal-content .control-label-Novatic {
+        width: 100% !important;
+    }
+
+
+    .betaTestStatement {
+        background: #ffa035;
+        text-align: center;
+        font-size: 1em !important;
+        padding: 15px;
+    }
+    /* footer */
+    footer.has-footer-widgets .footer-top {
+        padding-bottom: 0px !important;
+    }
+    /* Thông tin người dùng */
+    /* Ẩn menu */
+    .novaticUserNav {
+        display: none !important;
+    }
+    /* Chi tiết tài sản*/
+    .woocommerce div.product .woocommerce-tabs ul.tabs.wc-tabs.wc-tabs-4 > li {
+        /*width: 50% !important;*/
+        width: 25% !important;
+        font-size: 10px;
+        height: 70px;
+    }
+}
+/*FIX YÊU CẦU MR. ĐẠT*/
+/*bỏ vạch kẻ màu xanh ngăn cách các phần sidebar*/
+.sidebar-content .widget-title::before, .dokan-widget-area .widget-title::before {
+    /*border-left: 60px solid #242438;*/
+    border-left: unset !important;
+}
+
+/*giảm font size tiêu đề trang và khoảng cách*/
+.ibid-breadcrumbs h1 span, .ibid-breadcrumbs h1 {
+    font-size: 20px !important;
+}
+
+/*.high-padding {
+        padding: 10px 0 !important;
+    }*/
+
+.ibid-breadcrumbs {
+    padding: 10px 0 0px !important;
+}
+
+    .ibid-breadcrumbs .row {
+        padding-bottom: 0px !important;
+    }
+
+    .ibid-breadcrumbs h2 span, .ibid-breadcrumbs h2 {
+        font-size: 20px !important;
+    }
+
+.sidebar-content .widget-title, .dokan-widget-area .widget-title {
+    font-size: 18px !important;
+}
+
+.woocommerce.widget_product_search .search-field {
+    margin-bottom: 0px !important;
+}
+
+.page article.type-page {
+    padding: 0 0 !important;
+}
+
+.dokan-seller-search-form .dokan-row.dokan-clearfix .dokan-w4 {
+    float: left !important;
+}
+
+#homePage_ListCategory {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+#ContactSwap {
+    margin-bottom: 0px !important;
+}
+
+#NewsSwap {
+    padding-bottom: 30px !important;
+}
+/*FIX YÊU CẦU MR. ĐẠT ENDS*/
+
+/*FIX ẢNH TRANG CHỦ BỊ STRETCH*/
+.woocommerce ul.products li.product a img {
+    object-fit: cover !important;
+}
+
+.ImgBlog {
+    object-fit: cover;
+}
+
+.slick-slide img {
+    display: block;
+    object-fit: cover;
+}
+
+.woocommerce ul.cart_list li img, .woocommerce ul.product_list_widget li img {
+    object-fit: cover !important;
+}
+
+.woocommerce_categories2 .category-wrapper {
+    background-size: cover !important;
+}
+/*FIX ẢNH TRANG CHỦ BỊ STRETCH ENDS*/
+
+/* FIX MÀU GIAO DIỆN LẠC VIỆT */
+
+@media only screen and (min-width: 1024px) {
+    h1.auctionLogo {
+        margin: 10px !important;
+    }
+
+        h1.auctionLogo > a > img#auctionLogo {
+            height: 78px !important;
+            max-width: 400px !important;
+        }
+
+
+    #modeltheme-main-head {
+        background: #242438 !important;
+    }
+}
+
+
+h1.auctionLogo > a > img#auctionLogo {
+    /*height: 78px !important;*/
+}
+
+#logoTitleLine1 {
+    FONT-SIZE: 24px;
+    float: right;
+    margin-top: 25px;
+    margin-right: 20px;
+}
+
+#logoTitleLine2 {
+    color: #c23437;
+    float: right;
+    margin-top: -20px;
+    font-weight: bold;
+    margin-right: 38px;
+}
+
+#modeltheme-main-head {
+    /*background: #242438 !important;*/
+}
+
+.details-container > div.details-item .amount, .details-container > div.details-item ins {
+    color: #242438 !important;
+}
+
+span.amount table.compare-list .remove td a .remove, .woocommerce form .form-row .required, .woocommerce .woocommerce-info::before, .woocommerce .woocommerce-message::before, .woocommerce div.product p.price, .woocommerce div.product span.price, .woocommerce div.product .woocommerce-tabs ul.tabs li.active, .widget_popular_recent_tabs .nav-tabs li.active a, .widget_product_categories .cat-item:hover, .widget_product_categories .cat-item a:hover, .widget_archive li:hover, .widget_archive li a:hover, .widget_categories .cat-item:hover, .widget_categories li a:hover, .woocommerce .star-rating span::before, .pricing-table.recomended .button.solid-button, .pricing-table .table-content:hover .button.solid-button, .pricing-table.Recommended .button.solid-button, .pricing-table.recommended .button.solid-button, .pricing-table.recomended .button.solid-button, .pricing-table .table-content:hover .button.solid-button, .testimonial-author, .testimonials-container blockquote::before, .testimonials-container blockquote::after, h1 span, h2 span, label.error, .woocommerce input.button:hover, .author-name, .comment_body .author_name, .prev-next-post a:hover, .prev-text, .next-text, .social ul li a:hover i, .wpcf7-form span.wpcf7-not-valid-tip, .text-dark .statistics .stats-head *, .wpb_button.btn-filled, .widget_meta a:hover, .logo span, a.shop_cart::after, .woocommerce ul.products li.product .archive-product-title a:hover, .shop_cart:hover, .widget_pages a:hover, .categories_shortcode .category.active, .categories_shortcode .category:hover, .widget_recent_entries_with_thumbnail li:hover a, .widget_recent_entries li a:hover, .wpb_button.btn-filled:hover, li.seller-name::before, li.store-address::before, li.store-name::before, .full-width-part .post-name a:hover, .full-width-part .post-category-comment-date a:hover, .article-details .post-author a:hover, .grid-view.col-md-12.list-view .more-link:hover, .woocommerce button.button:hover, .woocommerce button.button.alt:hover, .woocommerce div.product form.buy-now.cart .button:hover span.amount, .woocommerce a.button:hover, .woocommerce ul.cart_list li:hover a, .woocommerce ul.product_list_widget li:hover a, a.add-wsawl.sa-watchlist-action:hover, a.remove-wsawl.sa-watchlist-action:hover, .top-footer .menu-search .btn.btn-primary:hover i.fa, footer .footer-top .menu .menu-item a:hover, wpcf7-form .wpcf7-submit:hover, .woocommerce a.button.alt:hover, .woocommerce a.button:hover, .form-submit input:hover, .post-name i, .modal-content p i, .modeltheme-modal #loginform input[type="submit"]:hover, blockquote::before, .no-results input[type="submit"]:hover, .form-submit input:hover, .sidebar-content .widget_nav_menu li a:hover {
+    color: #242438;
+}
+
+    .tagcloud > a:hover, .ibid-icon-search, .wpb_button::after, .rotate45, .latest-posts .post-date-day, .latest-posts h3, .latest-tweets h3, .latest-videos h3, .button.solid-button, .top-footer, .form-submit input, .page-template-template-blog .full-width-part .more-link, .full-width-part .more-link, button.vc_btn, .pricing-table.recomended .table-content, .pricing-table .table-content:hover, .pricing-table.Recommended .table-content, .pricing-table.recommended .table-content, .pricing-table.recomended .table-content, .pricing-table .table-content:hover, .block-triangle, .owl-theme .owl-controls .owl-page span, body .vc_btn.vc_btn-blue, body a.vc_btn.vc_btn-blue, body button.vc_btn.vc_btn-blue, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, table.compare-list .add-to-cart td a, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce a.remove:hover, .woocommerce .widget_price_filter .ui-slider .ui-slider-range, .woocommerce nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-pagination ul li a:hover, .woocommerce nav.woocommerce-pagination ul li span.current, .widget_social_icons li a:hover, #subscribe > button[type="submit"], .social-sharer > li:hover, .prev-next-post a:hover .rotate45, .masonry_banner.default-skin, .member-footer .social::before, .member-footer .social::after, .subscribe > button[type="submit"], .woocommerce #respond input#submit.alt.disabled, .woocommerce #respond input#submit.alt.disabled:hover, .woocommerce #respond input#submit.alt:disabled, .woocommerce #respond input#submit.alt:disabled:hover, .woocommerce #respond input#submit.alt[disabled]:disabled, .woocommerce #respond input#submit.alt[disabled]:disabled:hover, .woocommerce a.button.alt.disabled, .woocommerce a.button.alt.disabled:hover, .woocommerce a.button.alt:disabled, .woocommerce a.button.alt:disabled:hover, .woocommerce a.button.alt[disabled]:disabled, .woocommerce a.button.alt[disabled]:disabled:hover, .woocommerce button.button.alt.disabled, .woocommerce button.button.alt.disabled:hover, .woocommerce button.button.alt:disabled, .woocommerce button.button.alt:disabled:hover, .woocommerce button.button.alt[disabled]:disabled, .woocommerce button.button.alt[disabled]:disabled:hover, .woocommerce input.button.alt.disabled, .woocommerce input.button.alt.disabled:hover, .woocommerce input.button.alt:disabled, .woocommerce input.button.alt:disabled:hover, .woocommerce input.button.alt[disabled]:disabled, .woocommerce input.button.alt[disabled]:disabled:hover, .no-results input[type="submit"], table.compare-list .add-to-cart td a, .shop_cart, h3#reply-title::after, .newspaper-info, .categories_shortcode .owl-controls .owl-buttons i:hover, .widget-title:after, h2.heading-bottom:after, .wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header.ui-state-active, #primary .main-content ul li:not(.rotate45)::before, .wpcf7-form .wpcf7-submit, .menu-search .btn.btn-primary:hover, .um-register .um-button.um-alt, .btn-register, .modeltheme-modal #loginform input[type="submit"], form#login .register_button, form#login .submit_button, .bottom-components .component a:hover, .bottom-components .component a:hover, .bottom-components .component a:hover, .woocommerce-page .overlay-components .component a:hover, .woocommerce-page .vc_col-md-3 .overlay-components .component a:hover, .woocommerce.single-product .wishlist-container .yith-wcwl-wishlistaddedbrowse.show a, .widget_address_social_icons .social-links a, .hover-components .component:hover, .navbar-default .navbar-toggle .icon-bar, nav, .nav-previous a, .nav-next a, .dokan-dashboard .dokan-dashboard-content article.dashboard-content-area .dashboard-widget .widget-title, .woocommerce-MyAccount-navigation-link > a, .newsletter-footer input.submit:hover, .newsletter-footer input.submit:focus, a.add-wsawl.sa-watchlist-action, a.remove-wsawl.sa-watchlist-action, footer .footer-top .menu .menu-item a::before, .post-password-form input[type="submit"] {
+        background: #242438;
+    }
+
+.woocommerce ul.products li.product .onsale, .back-to-top, body .woocommerce ul.products li.product .onsale, body .woocommerce ul.products li.product .onsale, .pagination .page-numbers.current, .pagination .page-numbers.current:hover {
+    background-color: #242438;
+}
+
+.bottom-components .component a:hover, .bottom-components .component a:hover, .bottom-components .component a:hover, .woocommerce-page .overlay-components .component a:hover, .woocommerce-page .vc_col-md-3 .overlay-components .component a:hover, .columns-4 .overlay-components .component a:hover, .vc_col-md-4 .overlay-components .component a:hover, .no-sidebar .vc_col-md-3 .overlay-components .component a:hover, .woocommerce div.product .woocommerce-tabs ul.tabs li, .overlay-components .component.add-to-cart a, .bottom-components .component.add-to-cart a, .woocommerce_categories2 .products .component .yith-wcwl-wishlistexistsbrowse.show a, body .tp-bullets.preview1 .bullet, body #mega_main_menu li.default_dropdown .mega_dropdown > li > .item_link:hover, body #mega_main_menu li.widgets_dropdown .mega_dropdown > li > .item_link:hover, body #mega_main_menu li.multicolumn_dropdown .mega_dropdown > li > .item_link:hover, body #mega_main_menu li.grid_dropdown .mega_dropdown > li > .item_link:hover {
+    /*background: #242438 !important;*/
+}
+
+    .dokan-btn-theme a:hover, .dokan-btn-theme:hover, input[type="submit"].dokan-btn-danger:hover, input[type="submit"].dokan-btn-theme:hover, .woocommerce-MyAccount-navigation-link > a:hover, body .ibid_shortcode_blog .post-name a:hover, .masonry_banner .read-more:hover, .category-button a:hover, .wpcf7-form .wpcf7-submit:hover, .product_meta > span a:hover, .dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li.active a, .dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li a:hover, #dropdown-user-profile ul li a:hover, .widget_ibid_social_icons a, .simple-sitemap-container ul a:hover, .dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li:hover, .dokan-dashboard .dokan-dash-sidebar ul.dokan-dashboard-menu li.dokan-common-links a:hover, .woocommerce div.product .woocommerce-tabs ul.tabs li.active a, .woocommerce div.product .woocommerce-tabs ul.tabs li:hover a, .bot_nav_cat_wrap li a:hover, .mega_menu .cf-mega-menu li a:hover, .mega_menu .cf-mega-menu.sub-menu p a:hover, .woocommerce a.remove {
+        color: #242438 !important;
+    }
+
+
+
+.bottom-components .component.add-to-cart a {
+    background: #ffffff !important;
+}
+
+    .bottom-components .component.add-to-cart a:hover {
+        background: #242438 !important;
+    }
+
+        .bottom-components .component.add-to-cart a:hover i {
+            color: #fff !important;
+        }
+
+.products .component i {
+    color: #727272 !important;
+}
+
+.woocommerce a.button, .overlay-components .component.add-to-cart a {
+    background: #ffffff !important;
+}
+
+    .woocommerce a.button:hover, .overlay-components .component.add-to-cart a:hover {
+        background: #242438 !important;
+    }
+
+        .woocommerce a.button:hover i, .overlay-components .component.add-to-cart a:hover i {
+            color: #fff !important;
+        }
+
+.country i.fa {
+    color: #242438 !important;
+}
+
+
+
+.wishlist-container .yith-wcwl-add-to-wishlist a.button {
+    background: #242438 !important;
+}
+
+.vc_custom_1574674858978 {
+    background-color: #dd911d !important;
+}
+
+
+
+
+/* CLASS TỰ ĐỊNH NGHĨA*/
+div .summary button {
+    background-color: #242438 !important;
+}
+
+.ClassPriceAuctionDetail {
+    color: #242438 !important;
+}
+
+.auction-end span:not(:first-child) {
+    color: #242438 !important;
+}
+
+.gappingSpace, .userRole, .username {
+    background: #242438 !important;
+}
+
+#dokan-content .dokan-pagination-container .dokan-pagination li a:hover {
+    background: #242438 !important;
+    color: #fff;
+}
+
+#dokan-content .dokan-pagination-container .dokan-pagination li.active a {
+    background: #242438 !important;
+    color: #fff !important;
+}
+/* FIX MÀU GIAO DIỆN LẠC VIỆT ENDS*/
+/* FIX z-index swal2*/
+.swal2-container.swal2-center {
+    align-items: center;
+    z-index: 99999 !important;
+}
+/* css nút phân trang*/
+.dokan-pagination-container .dokan-pagination li {
+    display: inline-grid !important;
+    padding-top: 5px;
+}
+/*hover vào tin tức*/
+.lvca-portfolio-wrap .lvca-portfolio .lvca-portfolio-item .lvca-project-image:hover .lvca-image-info .lvca-post-title, .lvca-portfolio-wrap .lvca-portfolio .lvca-portfolio-item .lvca-project-image:hover .lvca-image-info .lvca-terms {
+    opacity: 0 !important;
+}
+
+.high-padding {
+    padding: 0px 0px !important;
+}
+
+.high-padding {
+    padding-top: 10px !important;
+}
+/*fix cung height của title tin tức*/
+.boxed-blog .lvca-portfolio-wrap .lvca-portfolio .lvca-portfolio-item .lvca-entry-text-wrap {
+    height: 195px;
+}
+/*fix chiều cao cố định của thẻ h3 tin tức*/
+.NovaticFontSizePC {
+    height: 106px;
+}
+
+@media only screen and (max-width: 760px) {
+    .NovaticFontSizePC {
+        height: unset !important;
+    }
+
+    .NovaticFontSizePC2 {
+        font-size: 16px !important;
+    }
+
+    .NovaticFontSizePC {
+        font-size: 18px !important;
+    }
+
+    .boxed-blog .lvca-portfolio-wrap .lvca-portfolio .lvca-portfolio-item .lvca-entry-text-wrap {
+        height: unset;
+    }
+}
+/*ngày tạo bài tin tức chữ in thường*/
+.lvca-portfolio-wrap .lvca-portfolio .lvca-portfolio-item .lvca-entry-meta span {
+    font-style: normal !important;
+}
+
+#primary .main-content ul:not(.ibid-slider) li:not(.rotate45), #primary .main-content ul li:not(.rotate45), #primary .main-content ul li:not(.rev_slider li) {
+    line-height: 20px !important;
+    margin-left: 0px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+[data-font="FontAwesome"]:before {
+    font-family: 'FontAwesome' !important;
+    content: attr(data-icon) !important;
+    speak: none !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    line-height: 1 !important;
+    font-style: normal !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+#yith-quick-view-modal .yith-wcqv-main {
+    background: #ffffff;
+}
+
+#yith-quick-view-close {
+    color: #242424;
+}
+
+    #yith-quick-view-close:hover {
+        color: #ff0000;
+    }
+
+.woocommerce form .form-row .required {
+    visibility: visible;
+}
+
+#rs-demo-id {
+}
+
+.wishlist_table .add_to_cart, a.add_to_wishlist.button.alt {
+    border-radius: 16px;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+}
+
+img.wp-smiley,
+img.emoji {
+    display: inline !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: 1em !important;
+    width: 1em !important;
+    margin: 0 .07em !important;
+    vertical-align: -0.1em !important;
+    background: none !important;
+    padding: 0 !important;
+}
+
+[data-font="Dashicons"]:before {
+    font-family: 'Dashicons' !important;
+    content: attr(data-icon) !important;
+    speak: none !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    line-height: 1 !important;
+    font-style: normal !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+.woocommerce-product-gallery {
+    opacity: 1 !important;
+}
+
+.slick-slide img {
+    max-width: 150px;
+}
+
+.wpb_animate_when_almost_visible {
+    opacity: 1;
+}
+
+/*Novatic auction core css section 1 ends*/

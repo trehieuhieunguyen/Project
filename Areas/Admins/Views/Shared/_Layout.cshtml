@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CDream Admin - Users</title>
+    <meta name="description" content="Users | CDream Admin">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Your website">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/assets/images/favicon.ico">
+
+    <!-- Bootstrap CSS -->
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Font Awesome CSS -->
+    <link href="~/assets/font-awesome/css/all.css" rel="stylesheet" type="text/css" />
+
+    <!-- Custom CSS -->
+    <link href="~/assets/css/style.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        .activeshow{
+            background-color: #6c757d!important;
+        }
+    </style>
+</head>
+
+<body class="adminbody">
+   
+    <div id="main">
+        
+        <!-- top bar navigation -->
+        <div class="headerbar">
+
+            <!-- LOGO -->
+            <div class="headerbar-left">
+                <a href="#" class="logo">
+                    <img alt="Logo" src="~/assets/images/logo.png" />
+                    <span>CDream ADMIN</span>
+                </a>
+            </div>
+            
+
+
+            <nav class="navbar-custom">
+
+                <ul class="list-inline float-right mb-0">
+
+                    <li class="list-inline-item dropdown notif">
+                        <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
+                            <img src="~/assets/images/avatars/admin.png" alt="Profile image" class="avatar-rounded">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h5 class="text-overflow">
+                                    <small>Hello, admin</small>
+                                </h5>
+                            </div>
+
+@*                            <!-- item-->
+                            <a href="profile.html" class="dropdown-item notify-item">
+                                <i class="fas fa-user"></i>
+                                <span>Profile</span>
+                            </a>*@
+
+                            <!-- item-->
+ 
+                             <form id="formLogout" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Customers" })">
+                                
+                                <a href="#" class="dropdown-item notify-item" onclick="document.getElementById('formLogout').submit()"><i class="fas fa-power-off"></i>Đăng xuất</a>
+                             </form>
+
+                        </div>
+                    </li>
+
+                </ul>
+
+                <ul class="list-inline menu-left mb-0">
+                    <li class="float-left">
+                        <button class="button-menu-mobile open-left">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </li>
+                </ul>
+
+            </nav>
+
+        </div>
+        <!-- End Navigation -->
+
+        <!-- Left Sidebar -->
+        <div class="left main-sidebar">
+
+            <div class="sidebar-inner leftscroll">
+
+                <div id="sidebar-menu">
+
+                    <ul>
+
+                        <li class="dashboard">
+                            <a asp-action="Index" asp-controller="Dashboard" asp-area="Admins">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span> Thống kê </span>
+                            </a>
+                        </li>
+
+                        <li class="coin">
+                            <a asp-action="Index" asp-controller="Coin" asp-area="Admins">
+                                <i class="fas fa-coins"></i>
+                                <span> Quản lý xu </span>
+                            </a>
+                        </li>
+
+                        <li class="user">
+                            <a asp-action="Index" asp-controller="User" asp-area="Admins">
+                                <i class="fas fa-user"></i>
+                                <span> Người Dùng </span>
+                            </a>
+                        </li>
+
+                        <li class="auction">
+                            <a asp-action="Index" asp-controller="Auction" asp-area="Admins">
+                                <i class="fas fa-table"></i>
+                                <span> Sản phẩm </span>
+                            </a>
+                        </li>
+
+                        <li class="order">
+                            <a asp-action="Index" asp-controller="Order" asp-area="Admins">
+                                <i class="fab fa-first-order-alt"></i>
+                                <span> Quản lý hóa đơn Xu </span>
+                            </a>
+                        </li>
+
+                        @*<li class="submenu">
+                            <a href="#">
+                                <span class="label radius-circle bg-danger float-right">18</span>
+                                <i class="fas fa-envelope"></i>
+                                <span> Mailbox </span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="mail-all.html">Inbox</a>
+                                </li>
+                                <li>
+                                    <a href="mail-view.html">Email view</a>
+                                </li>
+                            </ul>
+                        </li>*@
+			<li class="info">
+                             <a asp-action="GetAllProductAdmin" asp-controller="Auction" asp-area="Admins">
+                                <i class="fab fa-accusoft"></i>
+                                <span>Vật Phẩm Đấu giá </span>
+                            </a>
+                        </li>
+                        <li class="AuctionWinner">
+                            <a asp-action="GetAuctionWinnerAdmin" asp-controller="Auction" asp-area="Admins">
+                                <i class="fab fa-first-order-alt"></i>
+                                <span>Quản lý giao hàng </span>
+                            </a>
+                        </li>
+@*
+                        <li class="submenu">
+                            <a href="charts.html">
+                                <i class="fas fa-chart-line"></i>
+                                <span> Sơ đồ </span>
+                            </a>
+                        </li>*@
+                        
+                    </ul>
+
+                    <div class="clearfix"></div>
+
+                </div>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+        </div>
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+
+                @RenderBody()
+
+
+            </div>
+            <!-- END content -->
+
+        </div>
+        <!-- END content-page -->
+
+        <footer class="footer">
+            <span class="text-right">
+                Bản quyền <a target="_blank" href="#">thuộc công ty của bạn</a>
+            </span>
+            <span class="float-right">
+                Thực hiện bởi <a target="_blank" href="#" ><b>CDream</b></a>
+            </span>
+        </footer>
+        
+
+        <script src="~/assets/js/jquery.min.js"></script>
+        <script src="~/assets/js/popper.min.js"></script>
+        <script src="~/assets/js/bootstrap.min.js"></script>
+        <script src="~/assets/js/fastclick.js"></script>
+
+        <!-- active -->
+        <script>
+        $(document).ready(function () {
+            var pathname = window.location.pathname;
+            const findTerm = (term) => {
+                if (pathname.includes(term)) {
+                    return pathname;
+                }
+            };
+            switch (pathname) {
+                case findTerm('/Admins/Dashboard'):
+                    $(".dashboard").addClass("activeshow ");
+                    break;
+                case findTerm('/Admins/Coin'):
+                    $(".coin").addClass("activeshow ");
+                    break;
+
+
+                case findTerm('Admins/Auction/GetAuctionWinnerAdmin'):
+                    $(".AuctionWinner").addClass("activeshow ");
+                    break;
+                case findTerm('Admins/Auction/GetAllProductAdmin'):
+                    $(".info").addClass("activeshow ");
+                    break;
+                case findTerm('/Admins/Auction'):
+                    $(".auction").addClass("activeshow ");
+                    break;
+                case findTerm('/Admins/Order'):
+                    $(".order").addClass("activeshow ");
+                    break;
+                case findTerm('/Admins/User'):
+                    $(".user").addClass("activeshow ");
+                    break;
+                default:
+                    console.log('No Active engine found');
+            }
+            
+        });
+    </script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </div>
+    <!-- END main -->
+
+</body>
+
+</html>

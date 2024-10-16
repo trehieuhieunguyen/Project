@@ -1,0 +1,42 @@
+﻿@inject SignInManager<IdentityUser> SignInManager
+
+<link rel="stylesheet" href="~/css_thongtintaikhoan/NavCss.css?v=6" />
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+<style>
+  .woocommerce-MyAccount-navigation-link--orders:hover {
+      background-color: white!important;
+      
+  }
+</style>
+<nav class="woocommerce-MyAccount-navigation novaticUserNav">
+    <ul style="margin-bottom: 0;">
+        <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard ">
+            <div class="userInfo">
+                <div id="nameofuser" class="username">
+                    Lâm Hoàng Anh
+                </div>
+
+                <div class="userRole">
+                    
+                </div>
+
+                <div class="gappingSpace">
+                    <img id="avatarSettings" src="">
+
+                </div>
+            </div>
+
+        </li>
+        <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
+            <a style="text-decoration: none;color: white!important;" asp-area="Identity" asp-page="/Account/Manage/Index"> <i class="fa fa-user-circle" style="color: rgb(223, 145, 45);"></i> Thông tin tài khoản</a>
+        </li>
+        <form id="formLogout" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Customers" })">
+       <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
+                <a style="text-decoration: none;cursor: pointer;color: white!important;" onclick="document.getElementById('formLogout').submit()"> <i class="fa fa-sign-out-alt" style="color: rgb(223, 145, 45);"></i> Đăng xuất</a>
+           
+        </li>
+         </form>
+    </ul>
+</nav>

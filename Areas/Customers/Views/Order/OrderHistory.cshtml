@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Project.Models.Dtos.GroupOrderDetailsDtos>
+
+@{
+    ViewData["Title"] = "OrderHistory";
+    int count = 1;
+}
+<!-- Datatable CSS -->
+<link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"/>
+<style>
+   .container1{
+       height: 220px;
+   }
+</style>
+<div class="container mt-5" style="padding: 60px;">   
+    <h2 style="padding-bottom: 10px;"> Lịch sử giao dịch </h2>  
+    <div class="row">
+        <div class="nav nav-tabs mb-4" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active show" href="#">Hóa đơn mua xu</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" asp-action="History" asp-controller="SaleCoin" asp-area="Customers">Hóa đơn Rút xu</a>
+        </div>
+
+            <div class="col-md-12">
+                    <table id="myTable" class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th>Hóa đơn #</th>
+                                <th>Họ và tên</th>
+                                <th>Trạng thái</th>
+                                <th>Tổng giá</th>
+                                <th>Ngày mua hàng</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body">
+                            @foreach (var item in Model)
+                            {
+                                <tr class="cell-1">
+                                    <td class="text-center">@count</td>
+                                    <td>#@item.Name.Substring(0, 8)</td>
+                                    <td>@(item.FirstName + " " + item.LastName)</td>
+                                    @if (item.PaymentStatus is true)
+                                    {
+                                        <td><span class="badge badge-success">Đã thanh toán</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span class="badge badge-info">Đang chờ thanh toán</span></td>
+                                    }
+
+                                    <td>$@item.total</td>
+                                    <td>@item.DateCreate</td>
+                                    <td>
+                                        <a asp-controller="order" asp-action="OrderDetails" asp-route-id="@item.Name" class="icon-block">
+                                            <i class="fa fa-ellipsis-h text-black-50"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                count++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+</div>
+
+@section Scripts{ 
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "language": {
+                    "lengthMenu": 'Hiện thị  <select>' +
+                        '<option value="10">10</option>' +
+                        '<option value="20">20</option>' +
+                        '<option value="30">30</option>' +
+                        '<option value="40">40</option>' +
+                        '<option value="50">50</option>' +
+                        '<option value="-1">Tất cả</option>' +
+                        '</select> Dòng',
+                    "search": "Tìm:",
+                    "info": "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
+                    "paginate": {
+                        "next": "Tới",
+                        "previous": "Lùi lại"}
+                }
+            });
+        });
+    </script>
+}

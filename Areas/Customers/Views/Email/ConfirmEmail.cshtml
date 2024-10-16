@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+<style>
+    .container1 {
+        background-color: #eeeeee;
+        height: 188px;
+    }
+</style>
+<div class="jumbotron text-center" style=" padding-top: 150px;">
+    <h1 class="display-5">Cảm ơn! Email của bạn đã được xác nhận</h1>
+    <hr>
+    <p class="lead">
+        <a class="btn btn-primary btn-sm" asp-area="Customers" asp-controller="Home"
+           asp-action="Index" role="button">Đến trang chủ</a>
+        <a class="btn btn-danger btn-sm" asp-area="Identity" asp-controller="Account" asp-action="Login">Đăng nhập</a>
+    </p>
+
+</div>

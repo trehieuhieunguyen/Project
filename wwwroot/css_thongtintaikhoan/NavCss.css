@@ -1,0 +1,54 @@
+﻿.novaticUserNav {
+    border: 1px solid #ebebebd4;
+}
+
+    .novaticUserNav > ul .userInfo {
+        height: 300px !important;
+        background: #fff;
+        position: relative;
+        /*padding: 30px;*/
+        clear: both;
+        border-bottom: 1px solid #f7f7f7d4;
+    }
+
+        .novaticUserNav > ul .userInfo img {
+            height: 180px !important;
+            width: 180px !important;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: block;
+            border: 3px solid rgba(18, 52, 86, 0.24);
+        }
+
+.username {
+    background: #2695ff;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #fff;
+    font-weight: 500;
+    padding: 30px 0px 5px;
+    letter-spacing: 1px;
+}
+
+.userRole {
+    background: #2695ff;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #fff;
+    padding-bottom: 10px;
+}
+
+.gappingSpace {
+    background: #2695ff;
+    height: 100px;
+    width: 100%;
+    position: relative;
+    top: 0%;
+    z-index: 1;
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1400px) {
+    #dokan-secondary {
+        padding-left: 40px;
+    }
+}

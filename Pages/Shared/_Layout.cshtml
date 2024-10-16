@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/cssfull/bootstrap4.min.css?v=3">
+    <link rel="stylesheet" href="~/cssfull/header.css?v=1">
+    <link rel="stylesheet" href="~/cssfull/contact.css?v=3">
+    <link rel="stylesheet" href="~/cssfull/TimeNow.css" />
+</head>
+
+<body>
+    <style>
+        .avatar {
+            vertical-align: middle;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+    </style>
+    <!-- Header -->
+    <header>
+        <div class="container1">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand text mr-4 margin textcolor " href="#" style="padding: 5px;padding-left: 120px;">Theo dõi chúng tôi nha:</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a href="" class="nav-link margin iconcolor hovericon"><i class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link margin iconcolor hovericon"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link margin iconcolor hovericon"><i class="fab fa-google-plus-g"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link margin iconcolor hovericon"><i class="fab fa-youtube"></i></a>
+                        </li>
+                    </ul>
+                    <!-- Right -->
+                    <partial name="_LoginPartial" />
+                    <!-- Right -->
+                </div>
+            </nav>
+
+            <div class="header">
+                <div class="row">
+                    <div class="logo col-4">
+                        <!-- <img class="logo" src="img/logo.png" alt=""> -->
+                        <a asp-action="Index" asp-controller="Home" asp-area="Customers" target="">
+                            <img src="~/imgfull/logo.png" alt="" class="logo" /> </a>
+                    </div>
+                    <div class="search col-6 " id="search1">
+                    <form class="form-inline"  role="form">
+                        
+                        <select id="infoitem" class="list minisearch" style="margin-top: 0px;">
+                            <option value="">Tất cả</option>
+                            <option value="1">Tài sản công</option>
+                            <option value="2">Xe cộ</option>
+                            <option value="3">Bất động sản</option>
+                            <option value="4">Nghệ thuật</option>
+                            <option value="5">Hàng hiệu xa xỉ</option>
+                            <option value="6">Tài sản khác</option>
+                        </select>
+                        
+                        <div class="form-group input ">
+                        <input style="border:none;box-shadow: none !important;background-color: #DDDDDD;" type="text" class="form-control" name="" id="search" placeholder="Nhập tên sp" value="">   
+                        </div>
+                        <button type="button" id="searchurl" class="iconsearch"><i class="fas fa-search" aria-hidden="true" style="color: white;"></i>
+                        </button>
+                    </form>
+                </div>
+
+                </div>
+                <!-- Menu Danh mục - Trang chủ - Đấu giá - Liên hệ bán -->
+                <div class="bgmenubar sticky" style="z-index: 0;">
+                    <div class="menubar">
+                        <div class="dropdown">
+                            <button onclick="myFunction()" class="dropbtn">
+                                <i class="fas fa-list mr-2"></i>Danh mục sản phẩm
+                            </button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <!-- Link S/p -->
+                                <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="1"><i class="fas fa-university mr-2"></i>Tài sản công</a>
+                                <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="2"><i class="fas fa-home mr-2"></i>Xe cộ</a>
+                                <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="3"><i class="fas fa-car mr-2"></i>Bất động sản</a>
+                                <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="4"><i class="fas fa-image mr-2"></i>Nghệ thuật</a>
+                                <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="5"><i class="far fa-gem mr-2"></i>Hàng hiệu xa xỉ</a>
+                                <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="6"><i class="fas fa-plus mr-2"></i>Tài sản khác</a>
+                            </div>
+                        </div>
+                        <nav class="nav justify-content link1">
+                          
+
+                            <div class="dropdown">
+                                <button class="dropbtn1">Cuộc đấu giá</button>
+                                <div class="dropdown-content">
+                                    <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-time="1">Cuộc đấu giá sắp diễn ra</a>
+                                    <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-time="2">Cuộc đấu giá đang diễn ra</a>
+                                    <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-time="3">Cuộc đấu giá đã kết thúc</a>
+                                </div>
+                            </div>
+                            <a class="nav-link linknav" asp-action="Create" asp-controller="Auction" asp-area="Customers">Liên hệ bán đấu giá</a>
+
+                        </nav>
+
+                        <div class="contactous">
+                            <div class="email">
+                                <a href=""><i class="fas fa-envelope-open iconemail" style="color: white"></i></a>
+                                <p class="textemail mt-2">Email:</p>
+                                <h6 class="textemail " style="margin-top: 2px;">codedream@gmail.com</h6>
+
+                                <a href=""><i class="fas fa-phone-alt iconemail" style="color: white; margin-left:20px"></i></a>
+                                <p class="textemail mt-2" >Phone:</p>
+                                <h6 class="textemail" style="margin-top: 2px;">+84 123 456 789</h6>
+                            </div>
+                            @*<div class="phone">
+                                <a href=""><i class="fas fa-phone-alt iconemail" style="color: white"></i></a>
+                                <p class="textemail">Phone:</p>
+                                <h6 class="textemail" style="margin-top: 2px;">+84 123 456 789</h6>
+                            </div>*@
+                        </div>
+
+                    </div>
+                </div>
+                
+                <div class="row row-link">
+                    <ol class="breadcrumb">
+                        <li><a asp-action="Index" asp-controller="Home" asp-area="Customers">Trang chủ / </a></li>
+                        <li class="active-link"> </li>
+                    </ol>               
+                </div>
+            </div>
+
+
+        </div>
+        
+
+    </header>
+    <!-- Header -->
+    
+
+
+    @RenderBody()
+
+
+   
+
+    <!-- Date-time -->
+    <div class="time-part">
+        <i style="margin-right: 4px;" class="far fa-clock"></i>
+        <label id="time">
+        </label>
+    </div>
+    <!-- Footer -->
+    <footer>
+
+        <div class="container">
+            <!--Bắt Đầu Nội Dung Giới Thiệu-->
+            <div class="noi-dung about">
+                <h2>Về Chúng Tôi</h2>
+                <p>Lorem ipsumdolor sit...</p>
+                <ul class="social-icon">
+                    <li><a href=""><i class="fab fa-facebook-f text-white"></i></a></li>
+                    <li><a href=""><i class="fab fa-twitter text-white"></i></a></li>
+                    <li><a href=""><i class="fab fa-google-plus-g text-white"></i></a></li>
+                    <li><a href=""><i class="fab fa-youtube text-white"></i></a></li>
+                </ul>
+            </div>
+            <!--Kết Thúc Nội Dung Giới Thiệu-->
+            <!--Bắt Đầu Nội Dung Đường Dẫn-->
+            <div class="noi-dung links">
+                <h2>Đường Dẫn</h2>
+                <ul>
+                    <li><a href="#">Trang Chủ</a></li>
+                    <li><a href="#">Liên hệ bán đấu giá</a></li>
+                </ul>
+            </div>
+            <!--Kết Thúc Nội Dung Đường Dẫn-->
+            <!--Bắt Đâu Nội Dung Liên Hệ-->
+            <div class="noi-dung contact">
+                <h2>Thông Tin Liên Hệ</h2>
+                <ul class="info">
+                    <li>
+                        <span><i class="fa fa-map-marker"></i></span>
+                        <span>
+                            Nam Kì Khởi Nghĩa<br />
+                            Thành Phố Đà Nẵng<br />
+                            Việt Nam
+                        </span>
+                    </li>
+                    <li>
+                        <span><i class="fa fa-phone"></i></span>
+                        <p>
+                            <a href="#">+84 123 456 789</a>
+                            <br />
+                            <a href="#">+84 987 654 321</a>
+                        </p>
+                    </li>
+                    <li>
+                        <span><i class="fa fa-envelope"></i></span>
+                        <p><a href="#">codedream@gmail.com</a></p>
+                    </li>
+
+                </ul>
+            </div>
+            <!--Kết Thúc Nội Dung Liên Hệ-->
+        </div>
+
+
+    </footer>
+    <!-- Footer -->
+
+    <script src="https://kit.fontawesome.com/17afa23a7e.js" crossorigin="anonymous"></script>
+    <script src="~/jsfull/jquery-3.6.0.min.js"></script>
+    <script src="~/jsfull/popper.min.js"></script>
+    <script src="~/jsfull/header.js?v=4"></script>
+    <script type="text/javascript" src="~/jsfull/TimeNow.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!--Add Coin-->
+    <script>
+        Get();
+        function Get() {
+            $.ajax({
+                type: "GET",
+                url: "/Home/GetCoins",
+                datatype: JSON,
+                success: function (result) {
+                    if (result) {
+                        $('#soduchinh').text(result.coin);
+                        $('#avatar').attr("src", result.image);
+                    }
+                }
+            });
+        };
+    </script>
+    <script>
+        $("#searchurl").click(function (){
+            var url = 'Auction?input=' + $("#search").val() +"&loai="+ $('#infoitem').val();
+            var urlMain = window.location.href; 
+            var arr = urlMain.split("/"); 
+            var result = arr[0] + "//" + arr[2] + "/" + url;
+            window.location.href = result;
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

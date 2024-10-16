@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Project.Models.Dtos.ApplicationUserDtos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<!-- Datatable CSS -->
+<link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"/>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="breadcrumb-holder">
+                <h1 class="main-title float-left">Quản Lý xu</h1>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+                    
+<div class="row">
+    <div class="nav nav-tabs mb-4" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active show" href="#">Danh sách tài khoản có xu</a>
+      @*<a class="nav-item nav-link" id="nav-profile-tab" asp-action="SaleCoin" asp-controller="Coin" asp-area="Admins">Danh sách hóa đơn Rút xu</a>*@
+      @*<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact">Contact</a>*@
+    </div>
+
+        <div class="col-md-12">
+
+            <table id="myTable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Tên đăng nhập</th>
+                        <th>Họ và tên</th>
+                        <th>Số Xu hiện có</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr role="row" class="odd">
+                            <td>@item.UserName</td>
+                            <td>@(item.FirtsName+" "+item.LastName)</td>
+                            
+                            <td style="text-align:left;"><span class="badge badge-info" style="background-color:red;font-size:18px;">$@item.coin</span></td>
+
+                            <td><a class="btn btn-danger" type="button" asp-action="Edit" asp-route-id="@item.Id">Cập nhật xu</a></td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    
+</div>
+</div>
+
+@section Scripts{
+    <!-- Datatables js -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "language": {
+                    "lengthMenu": 'Hiện thị  <select>' +
+                        '<option value="10">10</option>' +
+                        '<option value="20">20</option>' +
+                        '<option value="30">30</option>' +
+                        '<option value="40">40</option>' +
+                        '<option value="50">50</option>' +
+                        '<option value="-1">Tất cả</option>' +
+                        '</select> Dòng',
+                    "search": "Tìm:",
+                    "info": "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
+                    "paginate": {
+                        "next": "Tới",
+                        "previous": "Lùi lại"
+                    }
+                }
+            });
+        });
+    </script>
+}

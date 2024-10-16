@@ -1,0 +1,243 @@
+﻿@model Project.Models.OrderCoinDetail
+@using Project.Helpers;
+@{
+    ViewData["Title"] = "Index";
+}
+<style type="text/css">
+    @@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+    body {
+        background-color: #eeeeee;
+        font-family: 'Open Sans', serif;
+        font-size: 14px
+    }
+
+    .container-fluid {
+        margin-top: -200px;
+        padding-top: 150px;
+    }
+
+    .card-body {
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 1.40rem
+    }
+
+    .img-sm {
+        width: 80px;
+        height: 80px
+    }
+
+    .itemside .info {
+        padding-left: 15px;
+        padding-right: 7px
+    }
+
+    .table-shopping-cart .price-wrap {
+        line-height: 1.2
+    }
+
+    .table-shopping-cart .price {
+        font-weight: bold;
+        margin-right: 5px;
+        display: block
+    }
+
+    .text-muted {
+        color: #969696 !important
+    }
+
+    a {
+        text-decoration: none !important
+    }
+
+    .card {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: 0px
+    }
+
+    .itemside {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%
+    }
+
+    .dlist-align {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex
+    }
+
+    [class*="dlist-"] {
+        margin-bottom: 5px
+    }
+
+    .coupon {
+        border-radius: 1px
+    }
+
+    .price {
+        font-weight: 600;
+        color: #212529
+    }
+
+    .btn.btn-out {
+        outline: 1px solid #fff;
+        outline-offset: -5px
+    }
+
+    .btn-main {
+        border-radius: 2px;
+        text-transform: capitalize;
+        font-size: 15px;
+        padding: 10px 19px;
+        cursor: pointer;
+        color: #fff;
+        width: 100%
+    }
+
+    .btn-light {
+        color: #ffffff;
+        background-color: #F44336;
+        border-color: #f8f9fa;
+        font-size: 12px
+    }
+
+        .btn-light:hover {
+            color: #ffffff;
+            background-color: #F44336;
+            border-color: #F44336
+        }
+
+    .btn-apply {
+        font-size: 11px
+    }
+    .btn-light {
+        color: #ffffff!important;
+        background-color: #F44336 !important;
+    }
+
+        @@media (max-width: 740px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+
+        @@media (min-width: 800px) and (max-width: 850px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+</style>
+
+<div class="container-fluid">
+    <div class="row" style=" padding: 50px;">
+        <aside class="col-lg-8" style="padding-left: 65px;">
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="table table-borderless table-shopping-cart">
+                        <thead class="text-muted">
+                            <tr class="small text-uppercase">
+                                <th scope="col">Sản phẩm</th>
+                                <th scope="col" width="120">Số Lượng</th>
+                                <th scope="col" width="120">Giá</th>
+                                <th scope="col" width="200"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                List<OrderCoinDetail> products = SessionHelper.GetObjectFromJson<List<OrderCoinDetail>>(Context.Session, "cart");
+
+                                double total = 0.0;
+                                if (products is not null)
+                                {
+                                    total = products.Sum(item => item.CoinProducts.Price * item.Quantity);
+                                    for (int i = 0; i < products.Count; i++)
+                                    {
+                                        if (products[i].CoinProducts.Id == 7)
+                                        {
+                                            total += products[i].Price;
+                                        }
+                                    }
+                                }
+                            }
+                            @if (products is not null)
+                            {
+                                foreach (var item in products)
+                                {
+                                    <tr>
+                                        <td>
+                                            <figure class="itemside align-items-center">
+                                                <div class="aside"><img src="~/images/@item.CoinProducts.Photo" width="60" class="img-sm"></div>
+                                                <figcaption class="info">
+                                                    <a href="#" class="title text-dark" data-abc="true">@item.CoinProducts.CoinName</a>
+                                                </figcaption>
+                                            </figure>
+                                        </td>
+                                        <td>
+                                            <strong style="font-size: 1.5em;line-height: 1.15;margin-bottom: 30px;color: red;">@item.Quantity</strong>
+                                        </td>
+                                        <td>
+                                            @if (item.CoinProducts.Id == 7)
+                                            {
+                                                <div class="price-wrap"> <var class="price">$@item.Price</var> <small class="text-muted"> $@item.Price mỗi </small> </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="price-wrap"> <var class="price">$@(item.CoinProducts.Price * item.Quantity)</var> <small class="text-muted"> $@item.CoinProducts.Price mỗi </small> </div>
+                                            }
+
+                                        </td>
+                                        <td class="text-right d-none d-md-block"> <a style="padding: .375rem .75rem; font-size: 0.9rem; line-height: 1.5; border-radius: .25rem; transition: color .15s; " asp-controller="Coin" asp-action="remove" asp-route-id="@item.CoinProducts.Id" class="btn btn-light" data-abc="true"> Xóa</a> </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </aside>
+        <aside class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <dl class="dlist-align">
+                        <dt>Tổng giá:</dt>
+                        <dd class="text-right ml-3">$@total</dd>
+                    </dl>
+                    <dl class="dlist-align">
+                        <dt>Giảm giá:</dt>
+                        <dd class="text-right text-danger ml-3">- $0</dd>
+                    </dl>
+                    <dl class="dlist-align">
+                        <dt>Tổng:</dt>
+                        <dd class="text-right text-dark b ml-3"><strong>$@total</strong></dd>
+                    </dl>
+                    <hr>
+                    <form method="post" asp-controller="payment" asp-action="PaypalCheckout">
+                        <input type="submit" class="btn btn-out btn-primary btn-square btn-main" style="background-color: #1748d3;" data-abc="true" value="Thanh toán">
+                    </form>
+                    <a asp-action="BuyCoinByInput" asp-controller="Coin" class="btn btn-out btn-success btn-square btn-main mt-2" style="background-color: #3f8b26;" data-abc="true">Tiếp tục mua hàng</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>

@@ -1,0 +1,157 @@
+﻿@using Project.Helpers;
+@{
+    ViewData["Title"] = "Check Out";
+}
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .btn-primary {
+        color: #fff!important;
+        background-color: #007bff!important;
+        border-color: #007bff;
+    }
+
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+        color: #212529;
+        text-align: center;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-color: transparent;
+        border: 1px solid transparent;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+    .card {
+        background: #000;
+        color: #fff;
+        width: 410px !important
+    }
+
+    .mrow {
+        margin-top: 30px;
+        margin-bottom: 30px
+    }
+
+    img {
+        margin-right: 10px
+    }
+
+    .main span:hover {
+        text-decoration: underline;
+        cursor: pointer
+    }
+
+    .mrow img:hover {
+        border-bottom: 1px solid #fff;
+        cursor: pointer
+    }
+
+    .btn-primary {
+        border: none;
+        border-radius: 30px
+    }
+
+    h5 {
+        padding-top: 8px
+    }
+
+    .form-group {
+        position: relative;
+        margin-bottom: 2rem
+    }
+
+    .form-control-placeholder {
+        position: absolute;
+        top: 6px;
+        padding: 7px 0 0 10px;
+        transition: all 200ms;
+        opacity: 0.5;
+        color: #dae0e5 !important;
+        font-size: 75%
+    }
+
+    .form-control:focus + .form-control-placeholder,
+    .form-control:valid + .form-control-placeholder {
+        font-size: 75%;
+        transform: translate3d(0, -100%, 0);
+        opacity: 1;
+        top: 10px
+    }
+
+    .form-control {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #fff !important;
+        border-radius: 0;
+        outline: 0
+    }
+
+        .form-control:focus,
+        .form-control:after {
+            outline-width: 0;
+            border-bottom: 1px solid #fff !important;
+            background: transparent;
+            box-shadow: none;
+            border-radius: 0;
+            color: #dae0e5;
+            letter-spacing: 1px
+        }
+
+    .container1 {
+        height: 290px;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="card my-4 p-3">
+            <div>
+                <h3 class="text-center">Thanh toán nhanh chóng với mã QRCode</h3>
+            </div>
+            <div class="row justify-content-center mrow">
+                <div class="col-12"> <img src="@Url.Action("GenerateQRCode")" height="350px" width="380px" /> </div>
+            </div>
+            <form class="form-card">
+
+                <div class="row lrow mt-4 mb-3">
+                    <div class="col-sm-8 col-12">
+                        <h3>Tổng giá:</h3>
+                    </div>
+                    <div class="col-sm-4 col-12">
+                        @{
+                            List<OrderCoinDetail> products = SessionHelper.GetObjectFromJson<List<OrderCoinDetail>>(Context.Session, "cart");
+
+                            double total = 0.0;
+                            if (products is not null)
+                            {
+                                total = products.Sum(item => item.CoinProducts.Price * item.Quantity);
+                                for (int i = 0; i < products.Count; i++)
+                                {
+                                    if (products[i].CoinProducts.Id == 7)
+                                    {
+                                        total += products[i].Price;
+                                    }
+                                }
+                            }
+                        }
+                        <h5>&#36;@total</h5>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    @{
+                        string url = SessionHelper.GetObjectFromJson<string>(Context.Session, "url");
+                    }
+                    <div class="col-sm-12"> <a href="@url" class="btn btn-primary btn-block"><i class="fab fa-paypal mr-2" aria-hidden="true"></i>Thanh toán với Paypal</a> </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

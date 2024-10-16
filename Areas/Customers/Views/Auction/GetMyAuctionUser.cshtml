@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Project.Models.Dtos.MessageMyAuctionDtos>
+
+@{
+    ViewData["Title"] = "GetMyAuctionUser";
+    int count = 1;
+}
+<!-- Datatable CSS -->
+<link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"/>
+<style>
+   .container1{
+       height: 220px;
+   }
+</style>
+<div class="container mt-5" style="padding-top: 60px;"> 
+    <h2 style="padding-bottom: 10px;"> Đấu giá của tôi </h2>  
+    <div class="row" >
+        <div class="nav nav-tabs mb-4" id="nav-tab" role="tablist">
+        </div>
+            <div class="col-md-12">
+                    <table id="myTable" class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th>Tên Sản Phẩm</th>      
+                                <th>Ảnh Sản Phẩm</th>
+                                <th>Trạng thái</th>
+                                <th>Giá Kết Thúc</th>
+                                <th>Ngày Kết thúc</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body">
+                            @foreach (var item in Model)
+                            {
+                                <tr class="cell-1">
+                                    <td class="text-center">@count</td>
+                                    <td>@item.Recipient.ProductName</td>
+                                    
+                                    <td><img src="@item.Recipient.Feature_Img" alt="img" style="width:150px; height:100px;"></td>
+                                    @if (@item.MoneyBack == false) 
+                                    {
+                                        <td><span class="badge badge-dark" style="font-size: 16px">Bạn đang trả giá cao nhất: <span style="color:red;">$@item.Content</span></span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span class="badge badge-info" style="font-size: 16px">Giá của bạn bị vượt</span></td>
+                                    }
+
+                                    <td >$@item.Recipient.Price_End</td>
+                                    <td>@item.Recipient.Time_End</td>
+                                    <td>
+                                        <a asp-controller="Auction" asp-action="Details" asp-route-id="@item.RecipientId" class="icon-block">
+                                            <i class="fa fa-ellipsis-h text-black-50"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                count++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+</div>
+
+@section Scripts{ 
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "language": {
+                    "lengthMenu": 'Hiện thị  <select>' +
+                        '<option value="10">10</option>' +
+                        '<option value="20">20</option>' +
+                        '<option value="30">30</option>' +
+                        '<option value="40">40</option>' +
+                        '<option value="50">50</option>' +
+                        '<option value="-1">Tất cả</option>' +
+                        '</select> Dòng',
+                    "search": "Tìm:",
+                    "info": "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
+                    "paginate": {
+                        "next": "Tới",
+                        "previous": "Lùi lại"}
+                }
+            });
+        });
+    </script>
+}

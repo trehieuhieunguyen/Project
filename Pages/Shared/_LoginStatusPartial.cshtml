@@ -1,0 +1,180 @@
+﻿
+@*@model Project.Areas.Identity.Pages.Account.LoginModel*@
+@*Delete name in file html , it will working*@
+@*CSS Login*@
+
+<style>
+
+    /* Full-width input fields */
+    #uname, #psw {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    /* Set a style for all buttons */
+    .btn-login {
+        background-color: #242438;
+        color: white;
+        padding: auto;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+        .btn-login:hover {
+            opacity: 0.8;
+        }
+
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        background-color: #f44336;
+    }
+
+    /* Center the image and position the close button */
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+        position: relative;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
+    span.psw {
+        padding-top: 16px;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        padding-top: 60px;
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+        border: 1px solid #888;
+        width: 900px; /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button (x) */
+    .close {
+        position: absolute;
+        right: 25px;
+        top: 0;
+        color: #000;
+        font-size: 35px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            cursor: pointer;
+        }
+
+    /* Add Zoom Animation */
+    .animate {
+        -webkit-animation: animatezoom 0.6s;
+        animation: animatezoom 0.6s
+    }
+
+    @@-webkit-keyframes animatezoom {
+        from {
+            -webkit-transform: scale(0)
+        }
+
+        to {
+            -webkit-transform: scale(1)
+        }
+    }
+
+    @@keyframes animatezoom {
+        from {
+            transform: scale(0)
+        }
+
+        to {
+            transform: scale(1)
+        }
+    }
+
+    /* Change styles for span and cancel button on extra small screens */
+    @@media screen and (max-width: 300px) {
+        span.psw {
+            display: block;
+            float: none;
+        }
+
+        .cancelbtn {
+            width: 100%;
+        }
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+</style>
+@if (TempData["Invalid"] == null)
+{
+    <style>
+        .modal {
+            display: none; /* Hidden by default */
+        }
+    </style>
+}else
+{
+    <style>
+        .modal {
+            display: block; /* Hidden by default */
+        }
+    </style>
+}
+<div id="id01" class="modal">
+
+    <form class="modal-content animate" asp-action="Login" asp-controller="Account" asp-area="Identity" method="post">
+        <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <img src="~/imgfull/logo.png" alt="Avatar" class="avatar" style="width: 40%; height: 10%; border-radius: 50%;">
+        </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @if (TempData["Invalid"] != null) { <h2 class="text-danger ml-3">@TempData["Invalid"]</h2> }
+        
+    <div class="container">
+        <label for="uname"><b>Tên đăng nhập</b></label>
+        <input type="text" id="uname" placeholder="Nhập Tên dăng nhập" required="" oninvalid="this.setCustomValidity('Nhập tài khoản tại đây')" oninput="this.setCustomValidity('')" data-val="true" data-val-required="The Username field is required." name="Input.Username" value="">
+
+        <label for="psw"><b>Mật khẩu</b></label>
+        <input type="password" id="psw" placeholder="Nhập mật khẩu" required="" oninvalid="this.setCustomValidity('Nhập mật khẩu tại đây')" oninput="this.setCustomValidity('')" data-val="true" data-val-required="The Password field is required." name="Input.Password">
+
+        <label class="d-block">
+            <input id="rememberme" type="checkbox" data-val="true" data-val-required="The Remember me? field is required." name="Input.RememberMe" value="true"> Nhớ mật khẩu
+        </label>
+        <button type="submit" id="login" class="btn btn-primary p-2">Đăng nhập</button>
+    </div>
+        <div class="container" style="background-color:#f1f1f1">
+            <span class="psw">Quên mật khẩu? nhấn vào <a asp-area="Identity" asp-page="/Account/ForgotPassword">đây!</a></span>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,206 @@
+﻿@model IEnumerable<Project.Models.Dtos.AuctionWinnerDtos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<!-- Datatable CSS -->
+<link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"/>
+<style>
+    .w100{
+        max-width: 100px;
+        max-height: 70px;
+    }
+    </style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="breadcrumb-holder">
+                <h1 class="main-title float-left">Quản Lý Giao Hàng</h1>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+                    
+<div class="row">
+    <div class="nav nav-tabs mb-4" id="nav-tab" role="tablist">
+        @*<a class="nav-item nav-link active show" href="#"></a>*@
+    </div>
+
+        <div class="col-md-12">
+
+            <table id="myTable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Tên người mua</th>
+                        <th>Tên Sản Phẩm</th>
+                        
+                        <th class="w100">Hình Ảnh</th>    
+                        <th>Trạng thái</th>
+                        <th>Giá đấu giá</th>
+                        <th>Thời gian kết thúc</th>
+                        <th>Thời gian nhận hàng</th>
+                        <th></th>                      
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr role="row" class="odd">
+                            <td>@item.applicationUser.UserName</td>
+                            <td>@item.auction.ProductName</td>
+                            <td><img src="@item.auction.Feature_Img" class="img-fluid" /></td>
+                            
+                            @if (@item.DeliveryStatus == true) 
+                                    {
+                                        <td><span class="badge badge-success" style="font-size:16px;">Đã nhận được đơn hàng</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span class="badge badge-danger" style="font-size:16px;">Chưa nhận được đơn hàng</span></td>
+                                    }
+                            @if (@item.message.MoneyBack == false)
+                            {
+                                <td><span class="badge badge-info" style="font-size:16px;"> $@item.message.Content</span></td>
+                            }else{
+                                <td></td>
+                            }
+                           
+                            <td>@item.message.MessageSent</td>
+                            <td>@item.DateRequired</td>
+                            <td>
+                             <form asp-action="ConfirmOrder">
+                                                        <input type="hidden" name="auctionId" value="@item.auctionId">
+                                                        <input type="hidden" name="DeliveryStatus" value="True">
+                                                        <button type="submit" class="btn btn-danger mb-2">ConfirmOrder</button>
+                               </form> 
+                                                
+                             <button class="btn btn-danger btn-sm rounded-0" type="button"  data-toggle="modal" data-target="#exampleModalCenter"  value="@item.auctionId @item.applicationUser.city @item.applicationUser.district @item.applicationUser.ward" >Edit DateRequired</button>
+                             </td>
+                        </tr>
+
+                    }
+                    <div id="exampleModalCenter" class="modal fade">
+                                    <div class="modal-dialog modal-confirm">
+                                        <div class="modal-content">
+                                            <div class="modal-header flex-column">
+                                                <div class="icon-box">
+                                                    <i class="fas fa-times"></i>
+                                                </div>
+                                                <h4 class="modal-title w-100">Are you sure?</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Bạn Muốn cập nhật nhận đơn.</p>
+                                            </div>
+                                            <div class="modal-footer justify-content-center">
+                                               <div class="row">
+                            <div class="row col-sm-12 col-xs-12">
+               
+                                <label id="diachi" class="col-sm-12 col-xs-12"></label>
+                            </div>
+                        </div>
+                                                 <form asp-action="UpdateOrder">
+                                                         <p>Nhập Ngày Giao Hàng Bạn Muốn Update.</p>
+                                                         
+                                                        <input type="hidden" name="auctionId" id="auctionPro" value="">
+                                                        <input type="datetime-local" class="mb-3" name="DateRequired" value="">
+                                                        <button type="submit" class="btn btn-danger">UpdateDate</button>
+                                                    </form> 
+                                                    
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                         </div>
+
+                </tbody>
+            </table>
+
+        </div>
+    
+</div>
+</div>
+
+@section Scripts{
+    <!-- Datatables js -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+       
+  
+          $("button").click(function() {
+            var id_auction = $(this).attr('value');
+            var Array = id_auction.split(" ");
+
+            var NodeCity = [];
+            $.ajax({
+                url: "/CountryVietNam/data.json",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    var getvalueCity = Array[1];
+                    var getvalueDistrict = Array[2];
+                    var getvalueWard = Array[3];
+                    $.each(data, function (i, item) {
+                        NodeCity.push(item);
+                    });
+                    const cityIndex = findIndexByIdCity(getvalueCity, NodeCity);
+                    const disIndex = findIndexByIdDis(getvalueDistrict, NodeCity[cityIndex].Districts);
+                    var cityget = findChildByIdCity(getvalueCity, NodeCity);
+                    var disget = findChildByIdDis(getvalueDistrict, NodeCity[cityIndex].Districts);
+                    const wardget = findChildByIdWard(getvalueWard, NodeCity[cityIndex].Districts[disIndex].Wards);
+                    $("#diachi").text("Address: " +wardget.Name +", "+disget.Name+", "+cityget.Name);
+                }
+            });
+            
+            $("#auctionPro").attr("value", Array[0] );
+        });
+
+        
+        const findIndexByIdCity = (Id, arr) => {
+            const result = arr.findIndex(o => o.Id === Id);
+            if (result) return result;
+        }
+        const findIndexByIdDis = (Id, arr) => {
+            const result = arr.findIndex(o => o.Id === Id);
+            if (result) return result;
+        }
+        const findChildByIdCity = (Id, arr) => {
+            const result = arr.find(o => o.Id === Id);
+            if (result) return result;
+        }
+        const findChildByIdDis = (Id, arr) => {
+            const result = arr.find(o => o.Id === Id);
+            if (result) return result;
+        }
+        const findChildByIdWard = (Id, arr) => {
+            const result = arr.find(o => o.Id === Id);
+            if (result) return result;
+        }
+
+
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "scrollX": true,
+                "language": {
+                    "lengthMenu": 'Hiện thị  <select>' +
+                        '<option value="10">10</option>' +
+                        '<option value="20">20</option>' +
+                        '<option value="30">30</option>' +
+                        '<option value="40">40</option>' +
+                        '<option value="50">50</option>' +
+                        '<option value="-1">Tất cả</option>' +
+                        '</select> Dòng',
+                    "search": "Tìm:",
+                    "info": "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
+                    "paginate": {
+                        "next": "Tới",
+                        "previous": "Lùi lại"
+                    }
+                }
+            });
+        });
+    </script>
+}
+

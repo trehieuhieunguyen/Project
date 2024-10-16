@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav nav-flex-icons" style="padding-right: 103px;">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="dropdown">
+            <a href="#" class="mr-2 textcolor hover"><i class="fas fa-coins iconcolor"></i></a>
+            <div class="dropdowna ">
+                <button class="dropbtna coins"><strong style="color: white;" id="soduchinh"></strong> <i class="fa fa-plus-circle add iconcolor"></i></button>
+                <div class="dropdown-contenta">
+                    <a asp-action="BuyCoinByInput" asp-controller="Coin" asp-area="Customers"> <i class="fas fa-plus mr-2"></i> Mua Xu</a>
+                    <a asp-action="Create" asp-controller="SaleCoin" asp-area="Customers"><i class="fas fa-minus mr-2"></i>Bán Xu</a>
+
+                </div>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="mr-2 pr-0 textcolor hover"><img id="avatar" src="" alt="Avatar" class="avatar"></a>
+            <div class="dropdowna thongtin">
+                <button class="dropbtna user" id="username">@UserManager.FindByNameAsync(UserManager.GetUserName(User)).Result.UserName<i class="fas fa-sort-down iconcolor"></i></button>
+                <div class="dropdown-contenta">
+                    
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index">Thông tin tài khoản</a>
+                    <a asp-action="GetMyAuctionWinner" asp-controller="Auction" asp-area="Customers">Đơn Hàng</a>
+                    <a asp-action="GetMyAuctionUser" asp-controller="Auction" asp-area="Customers">Đấu giá của tôi</a>
+                    <a asp-action="GetAutionUser" asp-controller="Auction" asp-area="Customers" >Tài sản đấu giá</a>
+                    <a asp-action="OrderHistory" asp-controller="Order" asp-area="Customers">Lịch sử giao dịch</a>
+                    @*<a href="#">Đăng xuất</a>*@
+                    <form id="formLogout" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Customers" })">
+                        <a href="#" onclick="document.getElementById('formLogout').submit()">Đăng xuất</a>
+                    </form>
+                </div>
+            </div>
+        </li>
+
+    }
+    else
+    {
+        <li class="nav-item">
+            <a onclick="document.getElementById('id01').style.display='block'" class="mr-4 textcolor hover" style="color:white">
+                <i class="fas fa-sign-in-alt iconcolor mr-2 "></i>Đăng
+                nhập
+            </a>
+            <!-- Login -->
+            <partial name="_LoginStatusPartial" />
+
+            <!-- Login -->
+        </li>
+        <li class="nav-item">
+            <a asp-area="Identity" asp-page="/Account/Register" class="mr-0 pr-0 textcolor hover">
+                <i class="fas fa-user-plus iconcolor mr-2"></i>Đăng kí
+            </a>
+        </li>
+    }
+</ul>

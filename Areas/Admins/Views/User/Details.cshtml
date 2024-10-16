@@ -1,0 +1,111 @@
+﻿@model Project.Models.Dtos.ApplicationUserDtos;
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row" style="margin-left:20%;width:2900px !important;">
+    
+    <div class="col-md-4" style="width:100%;">
+        <form asp-action="Details">
+             
+            <div class="d-flex flex-row" style="width:100%;">
+                 <div class="">
+                <div class="form-group" style="">
+                <label asp-for="Image" class="control-label"></label>
+                <input type="Image" style="width:300px; height:350px;" src="@Model.Image" class="form-control" alt="Img" disabled />
+                <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                 </div>
+                <div class="" style="width:600px !important;">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="FirtsName" class="control-label"></label>
+                <input asp-for="FirtsName" class="form-control" disabled/>
+                <span asp-validation-for="FirtsName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" disabled/>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" disabled/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" disabled/>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" disabled/>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="LockoutEnabled" class="switch control-label">
+                    @if (@Model.LockoutEnabled is true)
+                    {
+                        <input asp-for="LockoutEnabled" class="form-control" data-val="true" type="checkbox" checked disabled>
+                        
+                    }else {<input asp-for="LockoutEnabled" class="form-control" data-val="true" type="checkbox" disabled>}
+                    <span asp-for="LockoutEnabled" class="slider text-danger"></span>
+            </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="city" class="control-label"></label>
+                <input asp-for="city" class="form-control" disabled/>
+                <span asp-validation-for="city" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="district" class="control-label"></label>
+                <input asp-for="district" class="form-control" disabled/>
+                <span asp-validation-for="district" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ward" class="control-label"></label>
+                <input asp-for="ward" class="form-control" disabled/>
+                <span asp-validation-for="ward" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LockoutEnd" class="control-label"></label>
+                <input asp-for="LockoutEnd" class="form-control"disabled />
+                <span asp-validation-for="LockoutEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="coin" class="control-label"></label>
+                <input asp-for="coin" class="form-control" disabled/>
+                <span asp-validation-for="coin" class="text-danger"></span>
+            </div>
+            
+            
+            <div class="form-group">
+                <label asp-for="Role" class="control-label"></label>
+                <input type="Role" asp-for="PassWord" class="form-control" disabled/>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+             </div>
+            
+             </div>
+            
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script>
+    $('form').on('change', ':checkbox', function () {
+    if (this.checked) {
+        $(this).val(true);
+    }
+    else {
+        $(this).val(false);
+    }
+});
+    </script>
+
+

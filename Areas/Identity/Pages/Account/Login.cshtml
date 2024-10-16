@@ -1,0 +1,95 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div class="container" style="width: 50%;padding: 3rem 5rem;background-color: #f8f9fa;border-radius: 10px;">
+            <form id="account" method="post">
+                <h4>ĐĂNG NHẬP</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group first">
+                    <input asp-for="Input.Username" placeholder="Username" type="text" class="form-control">
+                    <span asp-validation-for="Input.Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Input.Password" placeholder="Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe">
+                            <input asp-for="Input.RememberMe" /> 
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="height: 45px;width: 100px;">Đăng nhập</button>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword" >Quên mật khẩu?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register"> Đăng Ký?</a>
+                    </p>
+
+                    <p>
+                        <a asp-page="./ResendEmailConfirmation" id="resend-confirmation" >Gửi lại gmail xác nhận?</a>
+                    </p>
+                </div>
+            </form>
+             <div class="col-md-12 col-md-offset-2">
+        <section>
+            <h4>Có thể sử dụng hệ thống khác để Đăng nhập.</h4>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                            for details on setting up this ASP.NET application to support logging in via external services.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                            <div class="d-flex flex-row" style="gap: 1rem;justify-content: center;">
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    string imageSrc = string.Empty;
+                                    string style = string.Empty;
+                                    @if (provider.DisplayName == "Google"){
+                                        imageSrc = "https://gfx4arab.com/wp-content/uploads/2020/06/google-icon.svg";
+                                        style = "background-color: #DD4B39;color: white;width: 40%;margin-top: .5rem;";
+                                    }else if (provider.DisplayName == "Facebook"){
+                                        imageSrc = "https://cdn.freebiesupply.com/logos/large/2x/facebook-3-logo-png-transparent.png";
+                                        style = "background-color: #4C69BA;color: white;height: 44px;width: 40%;";
+                                    }else if (provider.DisplayName == "Microsoft")
+                                        imageSrc = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Microsoft_Store_logo.svg/1200px-Microsoft_Store_logo.svg.png";
+                                    
+                                    <button type="submit" class="btn btn-light btn-block" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account" style="@style">
+                                        <img src="@imageSrc" alt="@provider.DisplayName" style="height: 20px;" />
+                                        Login With @provider.DisplayName
+                                    </button>
+                                }
+                                </div>
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>    
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

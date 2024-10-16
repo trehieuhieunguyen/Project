@@ -1,0 +1,442 @@
+﻿@model Project.Models.ViewModels.ShowAuctionVM
+@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" href="~/cssfull/danhmuc.css?v=5">
+<style>
+   .container1 {
+       height: auto;
+       }
+
+    .row-link {
+        visibility: hidden;
+    }
+
+    .next {
+    right: 40px;
+    border-radius: 3px 0 0 3px;
+    }
+
+    .next {
+    cursor: pointer;
+    position: absolute;
+    top: 100%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    shape-outside: circle();
+    clip-path: circle();
+}
+</style>
+<div>
+    <div class="slideshow-container">
+
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade">
+            <div class="numbertext displaynone">1 / 3</div>
+            <img class="imgslide" src="~/imgfull/15_20_55slide3.jpg" style="width:100%">
+            <div class="text1">
+            <h1>Mua & Đấu giá với các </h1>
+            <h1>bước đơn giản </h1>
+            <d1>Cam kết minh bạch và uy tín</d1>
+            </div>
+            <div class="buttonslide">
+                                  
+                <button class="btn123"><a style="color: black;" asp-action="Index" asp-controller="Auction" asp-area="Customers">Mua ngay</a></button>
+                <button class="btn123"><a  style="color: black;" asp-action="Create" asp-controller="Auction" asp-area="Customers" >Liên hệ bán đấu giá</a></button>
+            </div>
+        </div>
+                          
+        <div class="mySlides fade">
+            <div class="numbertext displaynone">2 / 3</div>
+            <img class="imgslide" src="~/imgfull/coins.jpg" style="width:100%">
+            <div class="text1">
+            <h1>Bảo Mật Cao & Thuận Tiện </h1>
+            <h1>Mua Và Bán Coins</h1>
+                               
+            </div>
+            <div class="buttonslide">
+                                 
+            <button class="btn123"><a style="color: black;" asp-action="BuyCoinByInput" asp-controller="Coin" asp-area="Customers" >Mua coins</a></button>
+            <button class="btn123"><a style="color: black;" asp-action="chitiet" asp-controller="Home" asp-area="Customers" >Tìm Hiểu Thêm</a></button>
+            </div>
+        </div>
+                          
+        <div class="mySlides fade">
+            <div class="numbertext displaynone">3 / 3</div>
+            <img class="imgslide" src="~/imgfull/contact-us-header.jpg" style="width:100%">
+            <div class="text1">
+            <h1>Mọi thắc mắc liên hệ ngay với chúng tôi</h1>
+            <p>Đội ngũ nhân viên luôn thúc trực </p>
+            </div>
+            <div class="buttonslide">
+            <button class="btn123"><a  style="color: black;"target="_blank"  href="https://www.facebook.com/tubadien/" type="" >Liên hệ ngay</a></button>
+            <button class="btn123"><a  style="color: black;"target="_blank" href="https://mail.google.com/mail/u/0/#inbox" type="" >Hòm thư góp ý </a></button>
+            </div>
+        </div>
+                            
+                          
+        <!-- Next and previous buttons -->
+        <a class="prev " onclick="plusSlides(-1)"><i class="fas fa-chevron-left ak "></i></a>
+        <a class="next " onclick="plusSlides(1)"><i class="fas fa-chevron-right"></i></a>
+        </div>
+                          
+        <br>
+                          
+        <!-- The dots/circles -->
+        <div class="badot" style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+
+<div class="body" style="padding-top: 300px;">
+    <div class="container_category">
+            <div class="left_category ">
+                <div class="top_left_category"> 
+                    <div class="taisancong sixcategory ">
+                        <div class="">
+                        <p class="h123">Tài Sản Công</p>
+                        <div class="soluongtaisan">Tài sản(@Model.ListCount[0])</div>
+                        <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="1" class="btnz btn-white btn-animate fourbutton">Xem thêm</a>
+                        </div>
+                    </div>
+                    <div class="xeco sixcategory">
+                        <div class="">
+                        <p class="h123">Xe Cộ</p>
+                        <div class="soluongtaisan">Tài sản(@Model.ListCount[1])</div>
+                        <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="2"  class="btnz btn-white btn-animate fourbutton">Xem thêm</a>
+                    </div>
+                    </div>
+                </div>
+                <div class="nghethuat sixcategory">
+                    <div class="">
+                    <p class="h123">Nghệ Thuật</p>
+                    <div class="soluongtaisan">Tài sản(@Model.ListCount[2])</div>
+                    <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="4" class="btnz btn-white btn-animate twobutton">Xem thêm</a>
+                </div>
+            </div>
+            </div>
+            <div class="right_category">
+                <div class="batdongsan sixcategory">
+                    <div class="">
+                    <p class="h123">Bất Động Sản</p>
+                        <div class="soluongtaisan">Tài sản(@Model.ListCount[3])</div>
+                        <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="3" class="btnz btn-white btn-animate twobutton">Xem thêm</a>
+                </div>
+                </div>
+                <div class="bottom_right_category">
+                    <div class="hangxaxi sixcategory">
+                        <div class="">
+                        <p class="h123">Hàng Xa Xỉ</p>
+                        <div class="soluongtaisan">Tài sản(@Model.ListCount[4])</div>
+                        <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="5" class="btnz btn-white btn-animate fourbutton">Xem thêm</a>
+                    </div>
+                    </div>
+                    <div class="taisankhac sixcategory">
+                        <div class="">
+                        <p class="h123">Tài Sản Khác</p>
+                        <div class="soluongtaisan">Tài sản(@Model.ListCount[5])</div>
+                        <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="6" class="btnz btn-white btn-animate fourbutton">Xem thêm</a>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="container_dentails">
+            <div class="left_container_de" style="background-image: url('/imgfull/TaiSan/1.jpg');">
+                <div class="categoryitem">
+                    <a href="#">
+                        <span class="cate_name">Tài Sản Công</span>
+                    </a>
+                </div>
+                <span class="count">Tài Sản (@Model.ListCount[0])</span>
+                <div class="categorybutton">
+                    <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="1" class="btnz btn-white btn-animate button" title="Xem Tất Cả"><span>
+                        Xem Tất Cả
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="right_container_de">
+                <ul class="products ">
+                    @foreach(var item in Model.auction[0]){
+                    <li class="information_product1">
+                        <div class="product_wrapper">
+                            <div class="thumbnail_dentail">
+                                <a asp-action="Details" asp-controller="Auction" asp-area="Customers" asp-route-id="@item.Id">
+                                    <img class="img_act" src="@item.Feature_Img" alt="">
+                                </a>
+                            </div>
+                            <div class="tiltle_dentail">
+                                <h3 class="active_product_title">
+                                    <a asp-action="Details" asp-controller="Auction" asp-area="Customers" asp-route-id="@item.Id" class="ellipsis2">@item.ProductName</a>
+                                </h3>
+                                <div class="dentail_product">
+                                    <span class="ellipsits2">Chủ tài sản: @(item.ApplicationUser.FirtsName + " " + item.ApplicationUser.LastName)</span>
+                                </div>
+                                <div class="dentail_container_price">
+                                    <span>
+                                        Giá Khởi Điểm: <span class="NDN">
+                                            <span class="price">@item.Price_Start</span>
+                                            Xu
+                                        </span>
+                                    </span>
+                                    <div class="AuctionOpentime">Thời gian đấu giá: @item.Time_Start</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="container_dentails">
+            <div class="left_container_de" style="background-image: url('/imgfull/TaiSan/2.jpeg');">
+                <div class="categoryitem">
+                    <a href="#">
+                        <span class="cate_name">Xe cộ</span>
+                    </a>
+                </div>
+                <span class="count">Tài Sản (@Model.ListCount[1])</span>
+                <div class="categorybutton">
+                    <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="2" class="btnz btn-white btn-animate button" title="Xem Tất Cả"><span>
+                        Xem Tất Cả
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="right_container_de">
+                <ul class="products ">
+                    @foreach(var item in Model.auction[1]){
+                    <li class="information_product1">
+                        <div class="product_wrapper">
+                            <div class="thumbnail_dentail">
+                                <a asp-action="Details" asp-controller="Auction" asp-area="Customers" asp-route-id="@item.Id">
+                                    <img class="img_act" src="@item.Feature_Img" alt="">
+                                </a>
+                            </div>
+                            <div class="tiltle_dentail">
+                                <h3 class="active_product_title">
+                                    <a asp-action="Details" asp-controller="Auction" asp-area="Customers" asp-route-id="@item.Id" class="ellipsis2">@item.ProductName</a>
+                                </h3>
+                                <div class="dentail_product">
+                                    <span class="ellipsits2">Chủ tài sản: @(item.ApplicationUser.FirtsName + " " + item.ApplicationUser.LastName)</span>
+                                </div>
+                                <div class="dentail_container_price">
+                                    <span>
+                                        Giá Khởi Điểm: <span class="NDN">
+                                            <span class="price">@item.Price_Start</span>
+                                            Xu
+                                        </span>
+                                    </span>
+                                    <div class="AuctionOpentime">Thời gian đấu giá: @item.Time_Start</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="container_dentails">
+            <div class="left_container_de" style="background-image: url('/imgfull/TaiSan/3.png');">
+                <div class="categoryitem">
+                    <a href="#">
+                        <span class="cate_name">Bất động sản</span>
+                    </a>
+                </div>
+                <span class="count">Tài Sản (@Model.ListCount[2])</span>
+                <div class="categorybutton">
+                    <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="3" class="btnz btn-white btn-animate button" title="Xem Tất Cả"><span>
+                        Xem Tất Cả
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="right_container_de">
+                <ul class="products ">
+                    @foreach(var item in Model.auction[2]){
+                    <li class="information_product1">
+                        <div class="product_wrapper">
+                            <div class="thumbnail_dentail">
+                                <a asp-action="Details" asp-controller="Auction" asp-area="Customers" asp-route-id="@item.Id">
+                                    <img class="img_act" src="@item.Feature_Img" alt="">
+                                </a>
+                            </div>
+                            <div class="tiltle_dentail">
+                                <h3 class="active_product_title">
+                                    <a asp-action="Details" asp-controller="Auction" asp-area="Customers" asp-route-id="@item.Id" class="ellipsis2">@item.ProductName</a>
+                                </h3>
+                                <div class="dentail_product">
+                                    <span class="ellipsits2">Chủ tài sản: @(item.ApplicationUser.FirtsName + " " + item.ApplicationUser.LastName)</span>
+                                </div>
+                                <div class="dentail_container_price">
+                                    <span>
+                                        Giá Khởi Điểm: <span class="NDN">
+                                            <span class="price">@item.Price_Start</span>
+                                            Xu
+                                        </span>
+                                    </span>
+                                    <div class="AuctionOpentime">Thời gian đấu giá: @item.Time_Start</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="container_dentails">
+            <div class="left_container_de" style="background-image: url('/imgfull/TaiSan/4.jpg');">
+                <div class="categoryitem">
+                    <a href="#">
+                        <span class="cate_name">Nghệ thuật</span>
+                    </a>
+                </div>
+                <span class="count">Tài Sản (@Model.ListCount[3])</span>
+                <div class="categorybutton">
+                    <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="4" class="btnz btn-white btn-animate button" title="Xem Tất Cả"><span>
+                        Xem Tất Cả
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="right_container_de">
+                <ul class="products ">
+                    @foreach(var item in Model.auction[3]){
+                    <li class="information_product1">
+                        <div class="product_wrapper">
+                            <div class="thumbnail_dentail">
+                                <a asp-action="Details" asp-controller="Auction" asp-area="Customers" asp-route-id="@item.Id">
+                                    <img class="img_act" src="@item.Feature_Img" alt="">
+                                </a>
+                            </div>
+                            <div class="tiltle_dentail">
+                                <h3 class="active_product_title">
+                                    <a asp-action="Details" asp-controller="Auction" asp-area="Customers" asp-route-id="@item.Id" class="ellipsis2">@item.ProductName</a>
+                                </h3>
+                                <div class="dentail_product">
+                                    <span class="ellipsits2">Chủ tài sản: @(item.ApplicationUser.FirtsName + " " + item.ApplicationUser.LastName)</span>
+                                </div>
+                                <div class="dentail_container_price">
+                                    <span>
+                                        Giá Khởi Điểm: <span class="NDN">
+                                            <span class="price">@item.Price_Start</span>
+                                            Xu
+                                        </span>
+                                    </span>
+                                    <div class="AuctionOpentime">Thời gian đấu giá: @item.Time_Start</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="container_dentails">
+            <div class="left_container_de" style="background-image: url('/imgfull/TaiSan/5.jpg'); background-origin: content-box;">
+                <div class="categoryitem">
+                    <a href="#">
+                        <span class="cate_name">Hàng hiệu xa xỉ</span>
+                    </a>
+                </div>
+                <span class="count">Tài Sản (@Model.ListCount[4])</span>
+                <div class="categorybutton">
+                    <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="5" class="btnz btn-white btn-animate button" title="Xem Tất Cả"><span>
+                        Xem Tất Cả
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="right_container_de">
+                <ul class="products ">
+                    @foreach(var item in Model.auction[4]){
+                    <li class="information_product1">
+                        <div class="product_wrapper">
+                            <div class="thumbnail_dentail">
+                                <a hasp-action="Details" asp-controller="Auction" asp-area="Customers" asp-route-id="@item.Id">
+                                    <img class="img_act" src="@item.Feature_Img" alt="">
+                                </a>
+                            </div>
+                            <div class="tiltle_dentail">
+                                <h3 class="active_product_title">
+                                    <a asp-action="Details" asp-controller="Auction" asp-area="Customers" asp-route-id="@item.Id" class="ellipsis2">@item.ProductName</a>
+                                </h3>
+                                <div class="dentail_product">
+                                    <span class="ellipsits2">Chủ tài sản: @(item.ApplicationUser.FirtsName + " " + item.ApplicationUser.LastName)</span>
+                                </div>
+                                <div class="dentail_container_price">
+                                    <span>
+                                        Giá Khởi Điểm: <span class="NDN">
+                                            <span class="price">@item.Price_Start</span>
+                                            Xu
+                                        </span>
+                                    </span>
+                                    <div class="AuctionOpentime">Thời gian đấu giá: @item.Time_Start</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="container_dentails">
+            <div class="left_container_de" style="background-image: url('/imgfull/TaiSan/6.jpg');">
+                <div class="categoryitem">
+                    <a href="#">
+                        <span class="cate_name">Tài sản khác</span>
+                    </a>
+                </div>
+                <span class="count">Tài Sản (@Model.ListCount[5])</span>
+                <div class="categorybutton">
+                    <a asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="6" class="btnz btn-white btn-animate button" title="Xem Tất Cả"><span>
+                        Xem Tất Cả
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="right_container_de">
+                <ul class="products ">
+                    @foreach(var item in Model.auction[5]){
+                    <li class="information_product1">
+                        <div class="product_wrapper">
+                            <div class="thumbnail_dentail">
+                                <a asp-action="Details" asp-controller="Auction" asp-area="Customers" asp-route-id="@item.Id">
+                                    <img class="img_act" src="@item.Feature_Img" alt="">
+                                </a>
+                            </div>
+                            <div class="tiltle_dentail">
+                                <h3 class="active_product_title">
+                                    <a asp-action="Details" asp-controller="Auction" asp-area="Customers" asp-route-id="@item.Id" class="ellipsis2">@item.ProductName</a>
+                                </h3>
+                                <div class="dentail_product">
+                                    <span class="ellipsits2">Chủ tài sản: @(item.ApplicationUser.FirtsName + " " + item.ApplicationUser.LastName)</span>
+                                </div>
+                                <div class="dentail_container_price">
+                                    <span>
+                                        Giá Khởi Điểm: <span class="NDN">
+                                            <span class="price">@item.Price_Start</span>
+                                            Xu
+                                        </span>
+                                    </span>
+                                    <div class="AuctionOpentime">Thời gian đấu giá: @item.Time_Start</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+</div>

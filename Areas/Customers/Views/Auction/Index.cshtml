@@ -1,0 +1,302 @@
+﻿@model Project.Models.ViewModels.ShowFindAuctionVM
+@{
+    ViewData["Title"] = "Index";
+    DateTime timeshow = DateTime.Now;
+}
+<link rel="stylesheet" href="~/cssfull/dg1.css?v=5" />
+<style>
+    #loadMore {
+        padding-bottom: 30px;
+        padding-top: 30px;
+        text-align: center;
+        width: 100%;
+    }
+    #loadMore button{
+        background: #042a63;
+        border-radius: 3px;
+        color: white;
+        display: inline-block;
+        padding: 10px 30px;
+        transition: all 0.25s ease-out;
+        -webkit-font-smoothing: antialiased;
+    }
+</style>
+<!-- Tìm kiếm/Product Infor - Footer -->
+<div class="container2">
+    <!-- Row tìm kiếm và sản phẩm  -->
+    <div class="row row2">
+        <!--Col tìm kiếm  -->
+        <div class="col-2 bg-cl-r left" style="border-radius: 10px;">
+            <form action="">
+                <label class="label-tk mt-3" for="">Lọc mục sản phẩm:</label>
+                <div class="form-group form-chonmuc">
+                    <select class="form-control form-tk" name="" id="loai">
+                        <option aria-placeholder="" hidden>Loại sản phẩm</option>
+                        <option value="">Toàn bộ</option>
+                        <option value="1">Tài sản công</option>
+                        <option value="2">Xe cộ</option>
+                        <option value="3">Bất động sản</option>
+                        <option value="4">Nghệ thuật</option>
+                        <option value="5">Hàng hiệu xa xỉ</option>
+                        <option value="6">Tài sản khác</option>
+                    </select>
+                    <small id="SelectAvatarError" class="text-danger"></small>
+                </div>
+
+                <div class="form-group">
+                    <select class="form-control form-gia" name="" id="timeProduct">
+                        <option aria-placeholder="" hidden>Thời gian</option>
+                        <option value="">Toàn bộ</option>
+                        <option value="1">Sắp đầu giá</option>
+                        <option value="2">Đang đấu giá</option>
+                        <option value="3">Kết thúc đấu giá</option>
+                    </select>
+                    <small id="SelectAvatarError" class="text-danger"></small>
+                </div>
+
+                <div class="form-group">
+                    <select class="form-control form-thoigian" name="" id="create">
+                        <option aria-placeholder="" hidden>Ngày đăng</option>
+                        <option value="false">Mới nhất</option>
+                        <option value="true">Cũ nhất</option>
+                    </select>
+                    <small id="SelectAvatarError" class="text-danger"></small>
+                </div>
+
+                <div>
+                    <button type="button" id="btn-bg" class="btn btn-tiny">Lọc</button>
+                </div>
+
+                <aside id="woocommerce_product_categories-2" class="widget woocommerce widget_product_categories">
+                    <h4 class="widget-title" style="margin-top: 100px;">Danh mục tài sản</h4>
+                    <ul class="product-categories">
+                        <li class="cat-item cat-item-114"><a id="title" asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="1">Tài sản công</a><span style="margin-left: 20px;"><span></span></span></li>
+                        <li class="cat-item cat-item-114"><a id="title" asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="2">Xe cộ</a><span style="margin-left: 20px;"><span></span></span></li>
+                        <li class="cat-item cat-item-114"><a id="title" asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="3">Bất động sản</a><span style="margin-left: 20px;"><span></span></span></li>
+                        <li class="cat-item cat-item-114"><a id="title" asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="4">Sưu tầm - nghệ thuật</a><span style="margin-left: 20px;"><span></span></span></li>
+                        <li class="cat-item cat-item-114"><a id="title" asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="5">Hàng hiệu xa xỉ</a><span style="margin-left: 20px;"><span></span></span></li>
+                        <li class="cat-item cat-item-114"><a id="title" asp-action="Index" asp-controller="Auction" asp-area="Customers" asp-route-loai="6">Tài sản khác</a><span style="margin-left: 20px;"><span></span></span></li>
+                    </ul>
+                </aside>
+            </form>
+        </div>
+        <!--Col sản phẩm  -->
+        <div class="col-8 bg-cl-c" style="margin-left: 2%;border-radius: 8px;">
+            <div class="row row-img" style="margin-left: 0%;" id="items">
+                @foreach(var item in Model.list)
+                {
+                <div class="col-3 col-img" style="border-radius: 10px;">
+                    <div class="pic-area">
+                        <a asp-action="Details" asp-controller="Auction" asp-area="Customers" asp-route-id="@item.auction.Id">
+                            <img src="@item.auction.Feature_Img" class="img-fluid picture mt-3" alt="" style="border-radius: 5px;"/>
+                        </a>
+                    </div>
+                    <h3 class="productname-style">
+                        <a id="title" style="font-size: 16px;" class="ellipsis2" asp-action="Details" asp-controller="Auction" asp-area="Customers" asp-route-id="@item.auction.Id">
+                            @item.auction.ProductName
+                        </a>
+                    </h3>
+                    <div class="details-container">
+                            @if (item.auction.Time_Start > timeshow)
+                            {
+                                <div class="details-price-container details-item">
+                                         Ngày bắt đầu :
+                                        <span class="price">
+                                            <span class="novaticPrice woocommerce-Price-amount amount">@item.auction.Time_Start.ToString("MM/dd/yyyy HH:mm:ss")</span>
+                                        </span>
+                                </div>
+                                <div class="details-price-container details-item">
+                                         Ngày kết thúc :
+                                        <span class="price">
+                                            <span class="novaticPrice woocommerce-Price-amount amount">@item.auction.Time_End.ToString("MM/dd/yyyy HH:mm:ss")</span>
+                                        </span>
+                                </div>
+                            }
+                            else if((item.auction.Time_End > timeshow) && (timeshow > item.auction.Time_Start))
+                            {
+                                <div class="details-price-container details-item">
+                                         Ngày kết thúc :
+                                        <span class="price">
+                                            <span class="novaticPrice woocommerce-Price-amount amount">@item.auction.Time_End.ToString("MM/dd/yyyy HH:mm:ss")</span>
+                                        </span>
+                                </div>
+                            }else if(item.auction.Time_End < timeshow){
+                                <div class="details-price-container details-item">
+                                         Đã kết thúc
+                                </div>
+                            }
+                    </div>
+                    <div class="row row-number-partic">
+                        <div class="col-9">
+                            <p class="text-muted p">Số người tham gia:</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="#">@item.Count</p>
+                        </div>
+                    </div>
+                    <div class="row row-number-partic1">
+                        <div class="col-6">
+                            <p class="text-muted">Cao nhất:</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="#">@item.Top1 Xu</p>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+            
+            
+            <div class="center">
+                <div id="loadMore" style="">
+                    <button id="load" onclick="LoadMore()">Load More...</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        var skipcount = 8;
+        var link = window.location.search;
+        if(link == ""){
+            link = "?";
+        }
+        function LoadMore() {
+            $.ajax({
+                type: "GET",
+                url: "/Auction/GetAuctions" + link + "&skip=" + skipcount,
+                datatype: JSON,
+                success: function (data) {
+
+                    $.each(data, function (i, items) {
+                        if(items.length == 0) {
+                            $("#load").remove();
+                            $("#loadMore").html('<span class="text-secondary">Không còn dữ liệu nào để tải...</span>');
+                            return;
+                        }
+                        //console.log(item);
+                        //console.log(item[0].auction.productName);
+
+                        $.each(items, function (i, item) {
+                            var time = "1"; 
+                            console.log(item.auction.Time_Start);
+                            var d1 = Date.parse(item.auction.time_Start);
+                            var d2 = Date.parse(item.auction.time_End);
+
+                            var datetimenow = Date.parse("@timeshow");
+
+                            if(d1 > datetimenow){
+                                time = "1";
+                            }else if((d2 > datetimenow) && (datetimenow > d1)){
+                                time = "2";
+                            }else if((d2 < datetimenow)){
+                                time = "3";
+                            }
+                            //08:22:12
+                            var m = new Date(item.auction.time_Start);
+                            var dateString =
+                                ("0" + (m.getMonth()+1)).slice(-2) + "/" +
+                                ("0" + m.getDate()).slice(-2) + "/" +
+                                m.getFullYear() + " " +
+                                ("0" + m.getHours()).slice(-2) + ":" +
+                                ("0" + m.getMinutes()).slice(-2) + ":" +
+                                ("0" + m.getSeconds()).slice(-2);
+                            
+                            var mend = new Date(item.auction.time_End);
+                            var dateStringend =
+                                ("0" + (mend.getMonth()+1)).slice(-2) + "/" +
+                                ("0" + mend.getDate()).slice(-2) + "/" +
+                                mend.getFullYear() + " " +
+                                ("0" + mend.getHours()).slice(-2) + ":" +
+                                ("0" + mend.getMinutes()).slice(-2) + ":" +
+                                ("0" + mend.getSeconds()).slice(-2);
+
+                            var rowfull;
+                            var row1 = '<div class="col-3 col-img" style="border-radius: 10px;"><div class="pic-area"><a href="/Auction/Details/' +
+                                item.auction.id +
+                                '"><img src="' +
+                                item.auction.feature_Img +
+                                '" class="img-fluid picture mt-3" alt="" style="border-radius: 5px;" /></a></div><h3 class="productname-style"><a id="title" style="font-size: 16px;" class="ellipsis2" href="/Auction/Details/' +
+                                item.auction.id +
+                                '">' +
+                                item.auction.productName +
+                                '</a></h3>';
+                            var row2 = "";
+                            switch(time){
+                                case "1":
+                                row2 = '<div class="details-container"><div class="details-price-container details-item">Ngày bắt đầu : <span class="price"><span class="novaticPrice woocommerce-Price-amount amount">' +
+                                dateString +
+                                '</span></span></div><div class="details-price-container details-item">Ngày kết thúc : <span class="price"><span class="novaticPrice woocommerce-Price-amount amount">' +
+                                dateStringend +
+                                '</span></span></div></div>';
+                                break;
+                                case "2":
+                                row2 = '<div class="details-container"><div class="details-price-container details-item">Ngày kết thúc : <span class="price"><span class="novaticPrice woocommerce-Price-amount amount">' +
+                                dateStringend +
+                                '</span></span></div></div>';
+                                break;
+                                case "3":
+                                row2 = '<div class="details-container"><div class="details-price-container details-item">Đã kết thúc</div></div>';
+                                break;
+                                default:
+                                row2 = '<div class="details-container"><div class="details-price-container details-item">Ngày bắt đầu : <span class="price"><span class="novaticPrice woocommerce-Price-amount amount">' +
+                                dateString +
+                                '</span></span></div><div class="details-price-container details-item">Ngày kết thúc : <span class="price"><span class="novaticPrice woocommerce-Price-amount amount">' +
+                                dateStringend +
+                                '</span></span></div></div>';
+                                break;
+                            }
+
+                             var row3 = '<div class="row row-number-partic"><div class="col-9"><p class="text-muted p">Số người tham gia:</p></div><div class="col-3"><p class="#">' +
+                                item.count +
+                                '</p></div></div><div class="row row-number-partic1"><div class="col-6"><p class="text-muted">Cao nhất:</p></div><div class="col-6"><p class="#">' +
+                                item.top1 +
+                                ' Xu</p></div></div></div>';
+                            rowfull = row1+ row2+ row3;
+                            $("#items").append(rowfull);
+                        });
+                    });
+                },
+            });
+            skipcount += 8;
+        }
+    </script>
+    <script>
+        $("#btn-bg").click(function (){
+            var url = 'Auction?input=&loai=' + $("#loai").val() +"&time="+ $('#timeProduct').val()+ "&order="+ $('#create').val();
+            location.href = url;
+        });
+    </script>
+    <script>
+        window.onload = function loadinfo(){
+            const urlParams = new URLSearchParams(window.location.search);
+            const myParamInput = urlParams.get('input');
+            const myParamLoai = urlParams.get('loai');
+            const myParamTime = urlParams.get('time');
+            const myParamOrder = urlParams.get('order');
+            if(myParamInput != null && myParamLoai != null && myParamTime != null && myParamOrder != null){
+                $("#loai").val(myParamLoai).change();
+                $("#timeProduct").val(myParamTime).change();
+                if(myParamOrder == ""){
+                    $("#create").val("false").change();
+                }else{
+                    $("#create").val(myParamOrder).change();
+                }
+            
+            }
+            if(myParamInput != null && myParamLoai != null){
+                $("#infoitem").val(myParamLoai).change();
+                $("#search").val(myParamInput);
+            }
+            if(myParamLoai != null){
+                $("#infoitem").val(myParamLoai).change();
+                $("#loai").val(myParamLoai).change();
+            }
+            if(myParamTime != null){
+                $("#timeProduct").val(myParamTime).change();
+            }
+        };
+
+    </script>
+}
